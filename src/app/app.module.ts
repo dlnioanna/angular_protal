@@ -2,27 +2,56 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {IndexComponent} from './index/index.component';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {OAuthModule} from 'angular-oauth2-oidc';
-import { UserComponent } from './user/user.component';
+import {UserComponent} from './user/user.component';
 import {UserService} from './user.service';
+import {SocialLoginModule, SocialAuthServiceConfig} from 'angularx-social-login';
+import {GoogleLoginProvider} from 'angularx-social-login';
+import { SigninComponent } from './signin/signin.component';
+import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
-    UserComponent
+    UserComponent,
+    SigninComponent,
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(),
+    SocialLoginModule,
+    MDBBootstrapModule.forRoot()
   ],
-  providers: [UserService],
+  providers: [UserService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '495787401556-ri9600efu58daort2k5rn5ass0nc4fe8.apps.googleusercontent.com'
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
