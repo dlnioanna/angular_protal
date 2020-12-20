@@ -8,14 +8,14 @@ import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {OAuthModule} from 'angular-oauth2-oidc';
 import {UserComponent} from './user/user.component';
-import {UserService} from './user.service';
+import {UserService} from './services/user.service';
 import {SocialLoginModule, SocialAuthServiceConfig} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import { SigninComponent } from './signin/signin.component';
-import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AccountComponent } from './account/account.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,6 @@ import { AccountComponent } from './account/account.component';
     IndexComponent,
     UserComponent,
     SigninComponent,
-    LoginComponent,
     HeaderComponent,
     FooterComponent,
     AccountComponent
@@ -35,7 +34,8 @@ import { AccountComponent } from './account/account.component';
     HttpClientModule,
     OAuthModule.forRoot(),
     SocialLoginModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    MatCardModule
   ],
   providers: [UserService,
     {
