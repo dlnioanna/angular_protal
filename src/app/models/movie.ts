@@ -4,8 +4,9 @@ export interface Movie {
   id: number;
   title: string;
   movieYear: number;
-  url: string;
+  poster: string;
   rating: number;
   duration: number;
+  description: string;
   roomList?: Room[];
 }
