@@ -8,7 +8,7 @@ import {UserService} from '../services/user.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  user: User;
+  user: User[];
 
   getUser(): void {
     this.userService.getUser().subscribe(user => (this.user = user));

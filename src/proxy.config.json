@@ -4,14 +4,25 @@
     "secure": false,
     "changeOrigin": true
   },
-  "/user": {
-    "target": "http://localhost:8080",
-    "secure": false,
-    "changeOrigin": true
-  },
   "/logout": {
     "target": "http://localhost:8080",
     "secure": false,
     "changeOrigin": true
+  },
+  "/account": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/imageUpload": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/api/**": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true
   }
+
 }

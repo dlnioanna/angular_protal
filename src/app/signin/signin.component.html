@@ -1,13 +1,30 @@
 <div class="jumbotron bg-transparent text-center">
-  <div *ngIf="!user" class="card text-center" insta>
+  <div *ngIf="!user" class="card text-center">
     <h6 class="card-header">
-      Social Login Demo
+      Σύνδεση
+    </h6>
+    <form class="login-form" [formGroup]="formGroup" (ngSubmit)="loginProccess()">
+      <div>
+        <input class="form-control" placeholder="username" formControlName="email">
+      </div>
+      <div>
+        <input class="form-control" type="password" placeholder="password" formControlName="password">
+
+      </div>
+      <button class="form-control" type="submit">Σύνδεση</button>
+    </form>
+  </div>
+
+
+</div>
+
+<div class="jumbotron bg-transparent text-center">
+  <div *ngIf="!user" class="card text-center">
+    <h6 class="card-header">
+      Συνδεσή με λογαριασμό Google <fa-icon [icon]="faGoogle"></fa-icon>
     </h6>
     <div class="card-block">
-      <p class="card-text">Σύνδεση με λογαριασμό Google</p>
-    </div>
-    <div class="card-block">
-      <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()"><span
+      <button class="btn btn-social-icon btn-google mx-1 form-control" (click)="signInWithGoogle()"><span
         class="fab fa-google"></span> Σύνδεση
       </button>
     </div>

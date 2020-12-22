@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {SocialAuthService, SocialUser} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import {Token} from '@angular/compiler';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
+import {faGoogle} from '@fortawesome/free-brands-svg-icons/faGoogle';
 
 @Component({
   selector: 'app-signin',
@@ -11,35 +14,53 @@ import {Token} from '@angular/compiler';
 export class SigninComponent implements OnInit {
   user: SocialUser;
   GoogleLoginProvider = GoogleLoginProvider;
-  token: String;
+  token: string;
+  formGroup: FormGroup;
+  faGoogle = faGoogle;
 
-  constructor(private authService: SocialAuthService) {
+  constructor(public socialAuthService: SocialAuthService, public authService: AuthService ) {
   }
 
   ngOnInit(): void {
-    this.authService.authState.subscribe((user) => {
+    this.initForm();
+    this.socialAuthService.authState.subscribe((user) => {
       this.user = user;
     });
   }
 
   signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    this.token = this.user.idToken;
-    console.log('Token is ' + this.token);
-
-
-
-
+    // let promise = new Promise((resolve=>, reject));
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   refreshGoogleToken(): void {
-    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+    this.socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
   }
 
   signOut(): void {
-    this.authService.signOut();
+    this.socialAuthService.signOut();
+  }
+
+  // tslint:disable-next-line:typedef
+  initForm() {
+    this.formGroup = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
+    });
   }
 
 
-
+  loginProccess(): void {
+    if (this.formGroup.valid) {
+      this.authService.login(this.formGroup.value)
+        .subscribe(result => {
+          if (result.success) {
+            console.log(result);
+            alert(result.message);
+          } else {
+            alert(result.message);
+          }
+        });
+    }
+  }
 }
