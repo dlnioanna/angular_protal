@@ -17,3 +17,8 @@
 .text {
 color: #010626;
 }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+}
