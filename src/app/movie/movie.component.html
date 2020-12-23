@@ -1,22 +1,53 @@
-<div class="p-5">
-  <ul>
-    <li *ngFor="let movie of movies">
-      <div class="card" style="width: 18rem;">
-        <!--      <img class="card-img-top" [src]="retrievedImage" alt="Card image cap">-->
-        <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movie.poster" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{movie.title}}</h5>
-          <p class="card-text"> Description </p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Ώρα προβολής</li>
-          <li class="list-group-item">Αίθουσα</li>
-          <li class="list-group-item">Διαθέσιμες θέσεις</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Κράτηση</a>
+<div class="container-fluid mx-auto pt-5">
+
+    <div *ngFor="let movie of movies; index as i">
+      <div class="row col-sm-12" *ngIf="i % 3 == 0">
+      <div class="col-sm-4 mb-5">
+        <div class="card" *ngIf="movies[i]">
+          <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i].poster">
+          <div class="card-body">
+            <h5 class="card-title">{{movies[i].title}}</h5>
+            <p class="card-text"> {{movies[i].description}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Ώρα προβολής</li>
+            <li class="list-group-item">Αίθουσα</li>
+            <li class="list-group-item">Διαθέσιμες θέσεις</li>
+            <li class="list-group-item card-link"><a href="#">Κράτηση</a></li>
+          </ul>
+
         </div>
       </div>
-    </li>
-  </ul>
+      <div class="col-sm-4 mb-5">
+        <div class="card" *ngIf="movies[i+1]">
+          <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i+1].poster">
+          <div class="card-body">
+            <h5 class="card-title">{{movies[i+1].title}}</h5>
+            <p class="card-text"> {{movies[i+1].description}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Ώρα προβολής</li>
+            <li class="list-group-item">Αίθουσα</li>
+            <li class="list-group-item">Διαθέσιμες θέσεις</li>
+            <li class="list-group-item card-link"><a href="#">Κράτηση</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-5">
+        <div class="card" *ngIf="movies[i+1]">
+          <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i+2].poster">
+          <div class="card-body">
+            <h5 class="card-title">{{movies[i+2].title}}</h5>
+            <p class="card-text"> {{movies[i+2].description}} </p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Ώρα προβολής</li>
+            <li class="list-group-item">Αίθουσα</li>
+            <li class="list-group-item">Διαθέσιμες θέσεις</li>
+            <li class="list-group-item card-link"><a href="#">Κράτηση</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
