@@ -5,5 +5,4 @@ export interface Room {
   name: string;
   floor: number;
   capacity: number;
-  movieList: Movie[];
 }

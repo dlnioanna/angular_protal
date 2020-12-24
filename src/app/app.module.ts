@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {IndexComponent} from './index/index.component';
 import {RouterModule} from '@angular/router';
-import {HttpClientModule, HttpEventType } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {OAuthModule} from 'angular-oauth2-oidc';
 import {UserComponent} from './user/user.component';
 import {UserService} from './services/user.service';
@@ -18,8 +18,21 @@ import {AccountComponent} from './account/account.component';
 import {MatCardModule} from '@angular/material/card';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import { MovieComponent } from './movie/movie.component';
-import { ImageUploadComponent } from './image-upload/image-upload.component';
+import {MovieComponent} from './movie/movie.component';
+import {ImageUploadComponent} from './image-upload/image-upload.component';
+import {RoomComponent} from './room/room.component';
+import {PurchaseComponent} from './purchase/purchase.component';
+import {TicketComponent} from './ticket/ticket.component';
+import {MovieShowComponent} from './movie-show/movie-show.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {enableProdMode} from '@angular/core';
+import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import {DatepickerComponent} from './datepicker/datepicker.component';
+import {MaterialModule} from './material/material.module';
 
 
 @NgModule({
@@ -32,7 +45,12 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
     FooterComponent,
     AccountComponent,
     MovieComponent,
-    ImageUploadComponent
+    ImageUploadComponent,
+    RoomComponent,
+    PurchaseComponent,
+    TicketComponent,
+    MovieShowComponent,
+    DatepickerComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +63,16 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatFormFieldModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule
   ],
+  entryComponents: [DatepickerComponent],
   providers: [UserService,
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},
+    {provide: MAT_DATE_LOCALE, useValue: 'gr-GR'},
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -62,7 +87,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
         ]
       } as SocialAuthServiceConfig,
     }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, DatepickerComponent]
 })
 export class AppModule {
 }

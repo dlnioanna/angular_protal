@@ -1,10 +1,14 @@
 import {Ticket} from './ticket';
+import {Room} from './room';
 
-export interface MovieShow{
+export interface MovieShow {
   id: number;
   startTime: number;
   endTime: number;
-  date: number;
-  movieId: number;
-  showTickets: Ticket[];
+  showDate: number;
+  movieOfMovieShow: number;
+  showTickets: Ticket;
+  roomOfMovieShow: Room;
 }
+
+

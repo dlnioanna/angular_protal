@@ -6,11 +6,13 @@ import {UserComponent} from './user/user.component';
 import {AccountComponent} from './account/account.component';
 import {MovieComponent} from './movie/movie.component';
 import {ImageUploadComponent} from './image-upload/image-upload.component';
+import {MovieShowComponent} from './movie-show/movie-show.component';
 
 const routes: Routes = [{path: 'index', component: IndexComponent},
   {path: 'users', component: UserComponent},
   {path: 'movies', component: MovieComponent},
   {path: 'account', component: AccountComponent},
+  {path: 'movieShows', component: MovieShowComponent},
   {path: 'imageUpload', component: ImageUploadComponent},
   {path: '**', redirectTo: 'index'}];
 

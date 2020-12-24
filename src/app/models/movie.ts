@@ -1,4 +1,5 @@
 import {Room} from './room';
+import {MovieShow} from './movieShow';
 
 export interface Movie {
   id: number;
@@ -6,7 +7,6 @@ export interface Movie {
   movieYear: number;
   poster: string;
   rating: number;
-  duration: number;
   description: string;
-  roomList?: Room[];
+  movieShowsOfMovie: MovieShow[];
 }
