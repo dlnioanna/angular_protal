@@ -10,17 +10,17 @@
             <p class="card-text"> {{movies[i].description}}</p>
           </div>
           <div class="list-group list-group-flush">
-            <div class="list-group-item"><span>Προβολή :</span><br>
-              <span *ngFor="let movieShow of movies[i].movieShowsOfMovie">
+            <div class="list-group-item"><span>Προβολές :</span><br>
+              <li *ngFor="let movieShow of movies[i].movieShowsOfMovie">
                 {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
                 {{movieShow.startTime | date:'HH:MM'}}
                 <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
-                <br></span></div>
-            <div class="list-group-item">Διαθέσιμες θέσεις</div>
+                <br>
+                <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
+                <br></li></div>
             <div class="list-group-item nav-link">
               <a routerLink="/purchase">Κράτηση</a></div>
           </div>
-
         </div>
       </div>
       <div class="col-sm-4 mb-5">
@@ -31,17 +31,17 @@
             <p class="card-text"> {{movies[i + 1].description}}</p>
           </div>
           <div class="list-group list-group-flush">
-            <div class="list-group-item"><span>Προβολή :</span><br>
-              <span *ngFor="let movieShow of movies[i+1].movieShowsOfMovie">
+            <div class="list-group-item"><span>Προβολές :</span><br>
+              <li *ngFor="let movieShow of movies[i+1].movieShowsOfMovie">
                 {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
                 {{movieShow.startTime | date:'HH:MM'}}
                 <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
-                <br></span></div>
-            <div class="list-group-item">Διαθέσιμες θέσεις</div>
+                <br>
+                <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
+                <br></li></div>
             <div class="list-group-item nav-link">
               <a routerLink="/purchase">Κράτηση</a></div>
           </div>
-
         </div>
       </div>
       <div class="col-sm-4 mb-5">
@@ -52,13 +52,14 @@
             <p class="card-text"> {{movies[i + 2].description}}</p>
           </div>
           <div class="list-group list-group-flush">
-            <div class="list-group-item"><span>Προβολή :</span><br>
-              <span *ngFor="let movieShow of movies[i+2].movieShowsOfMovie">
+            <div class="list-group-item"><span>Προβολές :</span><br>
+              <li *ngFor="let movieShow of movies[i+2].movieShowsOfMovie">
                 {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
                 {{movieShow.startTime | date:'HH:MM'}}
                 <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
-                <br></span></div>
-            <div class="list-group-item">Διαθέσιμες θέσεις</div>
+                <br>
+              <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
+              <br></li></div>
             <div class="list-group-item nav-link">
               <a routerLink="/purchase">Κράτηση</a></div>
           </div>

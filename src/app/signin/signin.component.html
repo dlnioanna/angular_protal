@@ -24,9 +24,8 @@
       Συνδεσή με λογαριασμό Google <fa-icon [icon]="faGoogle"></fa-icon>
     </h6>
     <div class="card-block">
-      <button class="btn btn-social-icon btn-google mx-1 form-control" (click)="signInWithGoogle()"><span
-        class="fab fa-google"></span> Σύνδεση
-      </button>
+      <button type="button" mdbBtn color="red" class="waves-light" mdbWavesEffect (click)="signInWithGoogle()">
+        <i class="fab fa-google-plus left"></i>Google+</button>
     </div>
   </div>
   <div *ngIf="user" class="card text-center">

@@ -1,11 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-datepicker',
   templateUrl: './datepicker.component.html',
   styleUrls: ['./datepicker.component.css']
 })
-export class DatepickerComponent {
 
+export class DatepickerComponent {
+  eventDateInput: string;
+  formatedDate: any;
+
+  @Output() dateEvent = new EventEmitter<string>();
+
+  getDate(event: MatDatepickerInputEvent<unknown>): void {
+    this.eventDateInput = `${event.value}`;
+    this.formatDate(this.eventDateInput);
+    console.log(this.eventDateInput);
+  }
+
+  sendDate(): void {
+    this.dateEvent.emit(this.formatedDate);
+  }
+
+  formatDate(inputString: string): void {
+    const inputDate = new Date(inputString);
+    this.formatedDate = `${inputDate.getDate().toString().padStart(2, '0')}/${(inputDate.getMonth() + 1).toString().padStart(2, '0')}/${inputDate.getFullYear()}`;
+  }
 
 }
+

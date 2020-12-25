@@ -1,15 +1,17 @@
 <div class="container-fluid mx-auto pt-5 pb-5">
-<div class="container container-fluid d-flex justify-content-center px-0">
-  <div class="row justify-content-center col-12">
-    <div class="col-sm-6 text-sm-center m-auto">
-      <h5>Αναζήτηση προβολών ανά ημέρα</h5>
+  <div class="container container-fluid d-flex justify-content-center">
+    <div class="row justify-content-center col-12">
+      <div class="col-sm-4 text-sm-right m-auto pt-3">
+        <h6 class="custom-blue">Αναζήτηση προβολών ανά ημέρα</h6>
+      </div>
+      <div class="col-sm-8 text-sm-left m-auto">
+        <app-datepicker (dateEvent)="receiveDate($event)"></app-datepicker>
+      </div>
     </div>
-    <div class="col-sm-6">
-      <app-datepicker></app-datepicker>
-    </div>
-
   </div>
-</div>
+
+date is {{showDate}}
+
 
 
 

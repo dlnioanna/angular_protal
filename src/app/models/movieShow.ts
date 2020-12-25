@@ -7,7 +7,7 @@ export interface MovieShow {
   endTime: number;
   showDate: number;
   movieOfMovieShow: number;
-  showTickets: Ticket;
+  showTickets: Ticket[];
   roomOfMovieShow: Room;
 }
 

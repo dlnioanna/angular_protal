@@ -15,7 +15,7 @@ export class MovieShowService {
   }
 
   getMovieShows(): Observable<MovieShow[]> {
-    return this.http.get<MovieShow[]>(this.baseUrl + 'movieshows');
+    return this.http.get<MovieShow[]>(this.baseUrl + 'movieshowsOnDate');
   }
 
 }

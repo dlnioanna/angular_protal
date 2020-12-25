@@ -11,7 +11,11 @@
 
 
 
-.nav-item a:hover {
+.nav-item > a:hover {
   color: #007bff;
 }
 
+.nav-item >.active >a{
+  color: #007bff;
+  background-color: chartreuse;
+}

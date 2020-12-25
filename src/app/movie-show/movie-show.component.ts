@@ -13,10 +13,15 @@ export class MovieShowComponent implements OnInit {
   movieShows: MovieShow[];
   movie: Movie;
   room: Room;
+  showDate: number;
 
   getMovieShow(): void {
     this.movieShowService.getMovieShows().subscribe(
       movieShows => (this.movieShows = movieShows));
+  }
+
+  receiveDate($event): void {
+    this.showDate = $event;
   }
 
   constructor(private movieShowService: MovieShowService) {
