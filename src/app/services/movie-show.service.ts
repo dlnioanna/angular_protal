@@ -14,8 +14,8 @@ export class MovieShowService {
   constructor(private http: HttpClient) {
   }
 
-  getMovieShows(): Observable<MovieShow[]> {
-    return this.http.get<MovieShow[]>(this.baseUrl + 'movieshowsOnDate');
+  getMovieShowsOnDate(date: string): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.baseUrl + 'movieshowsOnDate/' + date);
   }
 
 }

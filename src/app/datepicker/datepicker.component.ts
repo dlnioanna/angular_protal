@@ -10,8 +10,9 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 export class DatepickerComponent {
   eventDateInput: string;
   formatedDate: any;
+  formatedDateForServer: any;
 
-  @Output() dateEvent = new EventEmitter<string>();
+  @Output() dateEvent = new EventEmitter<any>();
 
   getDate(event: MatDatepickerInputEvent<unknown>): void {
     this.eventDateInput = `${event.value}`;
@@ -20,12 +21,13 @@ export class DatepickerComponent {
   }
 
   sendDate(): void {
-    this.dateEvent.emit(this.formatedDate);
+    this.dateEvent.emit({dateForHtml: this.formatedDate, dateForServer: this.formatedDateForServer});
   }
 
   formatDate(inputString: string): void {
     const inputDate = new Date(inputString);
     this.formatedDate = `${inputDate.getDate().toString().padStart(2, '0')}/${(inputDate.getMonth() + 1).toString().padStart(2, '0')}/${inputDate.getFullYear()}`;
+    this.formatedDateForServer = `${inputDate.getFullYear()}-${(inputDate.getMonth() + 1).toString().padStart(2, '0')}-${inputDate.getDate().toString().padStart(2, '0')}`;
   }
 
 }

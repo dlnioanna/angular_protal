@@ -7,13 +7,13 @@
           <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i].poster">
           <div class="card-body">
             <h5 class="card-title">{{movies[i].title}}</h5>
-            <p class="card-text"> {{movies[i].description}}</p>
+            <p class="card-text text-justify"> {{movies[i].description}}</p>
           </div>
           <div class="list-group list-group-flush">
             <div class="list-group-item"><span>Προβολές :</span><br>
               <li *ngFor="let movieShow of movies[i].movieShowsOfMovie">
                 {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
-                {{movieShow.startTime | date:'HH:MM'}}
+                {{movieShow.startTime | date:'hh:mm'}}
                 <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
                 <br>
                 <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
@@ -28,13 +28,13 @@
           <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i+1].poster">
           <div class="card-body">
             <h5 class="card-title">{{movies[i + 1].title}}</h5>
-            <p class="card-text"> {{movies[i + 1].description}}</p>
+            <p class="card-text text-justify"> {{movies[i + 1].description}}</p>
           </div>
           <div class="list-group list-group-flush">
             <div class="list-group-item"><span>Προβολές :</span><br>
               <li *ngFor="let movieShow of movies[i+1].movieShowsOfMovie">
                 {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
-                {{movieShow.startTime | date:'HH:MM'}}
+                {{movieShow.startTime | date:'hh:mm'}}
                 <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
                 <br>
                 <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
@@ -49,13 +49,13 @@
           <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i+2].poster">
           <div class="card-body">
             <h5 class="card-title">{{movies[i + 2].title}}</h5>
-            <p class="card-text"> {{movies[i + 2].description}}</p>
+            <p class="card-text text-justify"> {{movies[i + 2].description}}</p>
           </div>
           <div class="list-group list-group-flush">
             <div class="list-group-item"><span>Προβολές :</span><br>
               <li *ngFor="let movieShow of movies[i+2].movieShowsOfMovie">
                 {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
-                {{movieShow.startTime | date:'HH:MM'}}
+                {{movieShow.startTime | date:'hh:mm'}}
                 <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
                 <br>
               <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
@@ -67,3 +67,4 @@
       </div>
     </div>
   </div>
+</div>

@@ -2,17 +2,83 @@
   <div class="container container-fluid d-flex justify-content-center">
     <div class="row justify-content-center col-12">
       <div class="col-sm-4 text-sm-right m-auto pt-3">
-        <h6 class="custom-blue">Αναζήτηση προβολών ανά ημέρα</h6>
+        <h5 class="custom-blue">Αναζήτηση προβολών ανά ημέρα</h5>
       </div>
       <div class="col-sm-8 text-sm-left m-auto">
         <app-datepicker (dateEvent)="receiveDate($event)"></app-datepicker>
       </div>
     </div>
   </div>
-
-date is {{showDate}}
-
-
+  <div *ngIf="message" class="custom-blue text-sm-center p-4">{{message}}</div>
+<div *ngIf="movies">
+  <div *ngFor="let movie of movies; index as i">
+    <div class="row col-sm-12" *ngIf="i % 3 == 0">
+      <div class="col-sm-4 mb-5">
+        <div class="card" *ngIf="movies[i]">
+          <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i].poster">
+          <div class="card-body">
+            <h5 class="card-title">{{movies[i].title}}</h5>
+            <p class="card-text text-justify"> {{movies[i].description}}</p>
+          </div>
+          <div class="list-group list-group-flush">
+            <div class="list-group-item"><span>Προβολές :</span><br>
+              <li *ngFor="let movieShow of movies[i].movieShowsOfMovie">
+                {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
+                {{movieShow.startTime | date:'hh:mm'}}
+                <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
+                <br>
+                <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
+                <br></li></div>
+            <div class="list-group-item nav-link">
+              <a routerLink="/purchase">Κράτηση</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-5">
+        <div class="card" *ngIf="movies[i+1]">
+          <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i+1].poster">
+          <div class="card-body">
+            <h5 class="card-title">{{movies[i + 1].title}}</h5>
+            <p class="card-text text-justify"> {{movies[i + 1].description}}</p>
+          </div>
+          <div class="list-group list-group-flush">
+            <div class="list-group-item"><span>Προβολές :</span><br>
+              <li *ngFor="let movieShow of movies[i+1].movieShowsOfMovie">
+                {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
+                {{movieShow.startTime | date:'hh:mm'}}
+                <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
+                <br>
+                <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
+                <br></li></div>
+            <div class="list-group-item nav-link">
+              <a routerLink="/purchase">Κράτηση</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-5">
+        <div class="card" *ngIf="movies[i+2]">
+          <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i+2].poster">
+          <div class="card-body">
+            <h5 class="card-title">{{movies[i + 2].title}}</h5>
+            <p class="card-text text-justify"> {{movies[i + 2].description}}</p>
+          </div>
+          <div class="list-group list-group-flush">
+            <div class="list-group-item"><span>Προβολές :</span><br>
+              <li *ngFor="let movieShow of movies[i+2].movieShowsOfMovie">
+                {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
+                {{movieShow.startTime | date:'hh:mm'}}
+                <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
+                <br>
+                <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
+                <br></li></div>
+            <div class="list-group-item nav-link">
+              <a routerLink="/purchase">Κράτηση</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 </div>

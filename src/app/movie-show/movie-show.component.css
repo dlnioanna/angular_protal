@@ -22,3 +22,17 @@
   color: #007bff
 }
 
+
+.card{
+  width: 20rem;
+  height: 55rem;
+  margin:auto;
+}
+
+.card-img-top{
+  height: 25rem;
+}
+
+.card-body{
+  height: 20rem;
+}

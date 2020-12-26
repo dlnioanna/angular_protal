@@ -3,6 +3,7 @@ import {MovieShowService} from '../services/movie-show.service';
 import {MovieShow} from '../models/movieShow';
 import {Movie} from '../models/movie';
 import {Room} from '../models/room';
+import {MovieService} from '../services/movie.service';
 
 @Component({
   selector: 'app-movie-show',
@@ -11,17 +12,26 @@ import {Room} from '../models/room';
 })
 export class MovieShowComponent implements OnInit {
   movieShows: MovieShow[];
-  movie: Movie;
+  movies: Movie[];
   room: Room;
   showDate: number;
+  showDateForServer: number;
+  message: string;
 
-  getMovieShow(): void {
-    this.movieShowService.getMovieShows().subscribe(
-      movieShows => (this.movieShows = movieShows));
+  getMovieShowsOnDate(showDateForServer): void {
+    this.movieShowService.getMovieShowsOnDate(showDateForServer).subscribe(
+      movies => (this.movies = movies));
+    if (this.movies.length > 0) {
+      this.message = 'Ταινίες που προβάλονται την ' + this.showDate + ' :';
+    } else {
+      this.message = 'Δεν προβάλονται ταινίες την ' + this.showDate + '.';
+    }
   }
 
   receiveDate($event): void {
-    this.showDate = $event;
+    this.showDate = $event.dateForHtml;
+    this.showDateForServer = $event.dateForServer;
+    this.getMovieShowsOnDate(this.showDateForServer);
   }
 
   constructor(private movieShowService: MovieShowService) {
