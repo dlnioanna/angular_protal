@@ -24,15 +24,18 @@ import {RoomComponent} from './room/room.component';
 import {PurchaseComponent} from './purchase/purchase.component';
 import {TicketComponent} from './ticket/ticket.component';
 import {MovieShowComponent} from './movie-show/movie-show.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {enableProdMode} from '@angular/core';
 import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {DatepickerComponent} from './datepicker/datepicker.component';
 import {MaterialModule} from './material/material.module';
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { BoardUserComponent } from './boarduser/board-user.component';
+import { BoardAdminComponent } from './boardadmin/board-admin.component';
 
 
 @NgModule({
@@ -50,7 +53,12 @@ import {MaterialModule} from './material/material.module';
     PurchaseComponent,
     TicketComponent,
     MovieShowComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    BoardUserComponent,
+    BoardAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +78,7 @@ import {MaterialModule} from './material/material.module';
     MatNativeDateModule
   ],
   entryComponents: [DatepickerComponent],
-  providers: [UserService,
+  providers: [UserService, authInterceptorProviders,
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},
     {provide: MAT_DATE_LOCALE, useValue: 'gr-GR'},
     {

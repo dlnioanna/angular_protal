@@ -17,4 +17,16 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
+  getPublicContent(): Observable<any> {
+    return this.http.get(this.baseUrl + 'all', {responseType: 'text'});
+  }
+
+  getUserBoard(): Observable<any> {
+    return this.http.get(this.baseUrl + 'user', {responseType: 'text'});
+  }
+
+  getAdminBoard(): Observable<any> {
+    return this.http.get(this.baseUrl + 'admin', {responseType: 'text'});
+  }
+
 }

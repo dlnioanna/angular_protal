@@ -1,9 +1,9 @@
-<div class="jumbotron bg-transparent text-center">
+<div class="pt-5 pb-3">
   <div *ngIf="!user" class="card text-center">
     <h6 class="card-header">
       Σύνδεση
     </h6>
-    <form class="login-form" [formGroup]="formGroup" (ngSubmit)="loginProccess()">
+    <form class="login-form" [formGroup]="formGroup" (ngSubmit)="loginForm()">
       <div>
         <input class="form-control" placeholder="username" formControlName="email">
       </div>
@@ -14,11 +14,9 @@
       <button class="form-control" type="submit">Σύνδεση</button>
     </form>
   </div>
-
-
 </div>
 
-<div class="jumbotron bg-transparent text-center">
+<div class="pt-5 pb-3">
   <div *ngIf="!user" class="card text-center">
     <h6 class="card-header">
       Συνδεσή με λογαριασμό Google <fa-icon [icon]="faGoogle"></fa-icon>
@@ -38,7 +36,6 @@
       <h4 class="card-title">{{ user.name }}</h4>
       <p class="card-text">{{ user.email }}</p>
       <p class="card-text">Logged in with {{ user.provider }}</p>
-      <p class="card-text">token{{ user.idToken }}</p>
     </div>
     <div class="card-block">
       <button class="btn btn-danger" (click)="signOut()">Sign out</button>

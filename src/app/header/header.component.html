@@ -11,15 +11,18 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/movies">Ταινίες</a>
       </li>
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" routerLink="/rooms">Αίθουσες</a>-->
-<!--      </li>-->
       <li class="nav-item">
         <a class="nav-link" routerLink="/movieShows">Προβολές</a>
       </li>
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" routerLink="/account">Λογαριασμός</a>-->
-<!--      </li>-->
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a class="nav-link" routerLink="/admin">admin</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a class="nav-link" routerLink="/user">user</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/account">Λογαριασμός</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/admin_panel">Διαχείριση</a>
       </li>
@@ -28,10 +31,20 @@
       </li>
     </ul>
 
-
-      <div>
-        <a class="nav-link" routerLink="/account">Λογαριασμός</a>
+      <div *ngIf="!isLoggedIn" class="nav-item">
+        <a href="/register" class="nav-link" routerLink="/register">register</a>
       </div>
+      <div *ngIf="!isLoggedIn" class="nav-item">
+        <a href="/login" class="nav-link" routerLink="/login">login</a>
+      </div>
+
+    <div *ngIf="isLoggedIn" class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile" (click)="logout()">{{username}}</a>
+    </div>
+
+    <div>
+      <a class="nav-link" routerLink="/account">Λογαριασμός</a>
+    </div>
 
   </div>
 </nav>
