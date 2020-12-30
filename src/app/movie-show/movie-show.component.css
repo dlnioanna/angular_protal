@@ -24,15 +24,15 @@
 
 
 .card{
-  width: 20rem;
-  height: 55rem;
+  width: 70%;
+  height: 90%;
   margin:auto;
 }
 
 .card-img-top{
-  height: 25rem;
+  height: 50%;
 }
 
 .card-body{
-  height: 20rem;
+  height: 50%;
 }

@@ -14,6 +14,7 @@ import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
 import {BoardUserComponent} from './boarduser/board-user.component';
 import {BoardAdminComponent} from './boardadmin/board-admin.component';
+import {PurchaseformComponent} from './purchaseform/purchaseform.component';
 
 const routes: Routes = [{path: 'index', component: IndexComponent},
   {path: 'users', component: UserComponent},
@@ -22,13 +23,17 @@ const routes: Routes = [{path: 'index', component: IndexComponent},
   {path: 'movieShows', component: MovieShowComponent},
   {path: 'imageUpload', component: ImageUploadComponent},
   {path: 'purchase', component: PurchaseComponent},
+  {path: 'purchase/:id', component: PurchaseComponent},
+  {path: 'purchaseform', component: PurchaseformComponent},
+  {path: 'purchaseform/:movieId/:movieShowId', component: PurchaseformComponent, pathMatch: 'full'},
   {path: 'rooms', component: RoomComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'user', component: BoardUserComponent},
-  {path: 'admin', component: BoardAdminComponent},
-  {path: '**', redirectTo: 'index'}];
+  {path: 'admin', component: BoardAdminComponent}];
+
+// {path: '**', redirectTo: 'index'}];
 
 @NgModule({
   declarations: [],

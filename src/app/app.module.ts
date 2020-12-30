@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {IndexComponent} from './index/index.component';
-import {RouterModule} from '@angular/router';
+import {RouterModule, ActivatedRoute, ParamMap} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {OAuthModule} from 'angular-oauth2-oidc';
 import {UserComponent} from './user/user.component';
@@ -36,6 +36,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardUserComponent } from './boarduser/board-user.component';
 import { BoardAdminComponent } from './boardadmin/board-admin.component';
+import { PurchaseformComponent } from './purchaseform/purchaseform.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { BoardAdminComponent } from './boardadmin/board-admin.component';
     RegisterComponent,
     ProfileComponent,
     BoardUserComponent,
-    BoardAdminComponent
+    BoardAdminComponent,
+    PurchaseformComponent
   ],
   imports: [
     BrowserModule,
