@@ -15,7 +15,10 @@ export class PurchaseformComponent implements OnInit {
   movieId: any;
   movie: Movie;
   movieShow: MovieShow;
-  queryObject: any;
+  form: any = {};
+  isSuccessful = false;
+  isBuyingFailed = false;
+  errorMessage = '';
 
   constructor(private activatedRoute: ActivatedRoute, private purchaseformService: PurchaseformService) {
   }
@@ -34,3 +37,17 @@ export class PurchaseformComponent implements OnInit {
   }
 
 }
+
+  // onSubmit(): void {
+  // this.authService.register(this.form).subscribe(
+  //   data => {
+  //     console.log(data);
+  //     this.isSuccessful = true;
+  //     this.isSignUpFailed = false;
+  //   },
+  //   err => {
+  //     this.errorMessage = err.errorMessage;
+  //     this.isSignUpFailed = true;
+  //   }
+  // );
+// }

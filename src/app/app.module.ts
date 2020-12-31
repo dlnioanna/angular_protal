@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {IndexComponent} from './index/index.component';
 import {RouterModule, ActivatedRoute, ParamMap} from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {OAuthModule} from 'angular-oauth2-oidc';
 import {UserComponent} from './user/user.component';
 import {UserService} from './services/user.service';
@@ -37,6 +37,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { BoardUserComponent } from './boarduser/board-user.component';
 import { BoardAdminComponent } from './boardadmin/board-admin.component';
 import { PurchaseformComponent } from './purchaseform/purchaseform.component';
+import { AppInterceptor } from './services/appInterceptor';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { PurchaseformComponent } from './purchaseform/purchaseform.component';
   ],
   entryComponents: [DatepickerComponent],
   providers: [UserService, authInterceptorProviders,
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},
     {provide: MAT_DATE_LOCALE, useValue: 'gr-GR'},
     {

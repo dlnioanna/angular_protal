@@ -6,8 +6,6 @@ import {Guest} from './guest';
 export interface Ticket {
   id: number;
   price: number;
-  seat: number;
-  rowNum: number;
   timeEdited: Date;
   used: boolean;
   ticketPurchase: Purchase;

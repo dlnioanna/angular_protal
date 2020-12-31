@@ -13,3 +13,8 @@ export interface User {
   userPurchases: Purchase[];
   ticketsBought: Ticket[];
 }
+
+export class User {
+  constructor(public status: string) {
+  }
+}

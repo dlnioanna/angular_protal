@@ -30,7 +30,7 @@
                 <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
                 <br></li></div>
             <div class="list-group-item nav-link">
-              <a routerLink="/purchase">Κράτηση</a></div>
+              <a [routerLink]="['/purchase']" [queryParams]="{movieId : movies[i].id}">Κράτηση</a></div>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
                 <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
                 <br></li></div>
             <div class="list-group-item nav-link">
-              <a routerLink="/purchase">Κράτηση</a></div>
+              <a [routerLink]="['/purchase']" [queryParams]="{movieId : movies[i+1].id}">Κράτηση</a></div>
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@
                 <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
                 <br></li></div>
             <div class="list-group-item nav-link">
-              <a routerLink="/purchase">Κράτηση</a></div>
+              <a [routerLink]="['/purchase']" [queryParams]="{movieId : movies[i+2].id}">Κράτηση</a></div>
           </div>
         </div>
       </div>

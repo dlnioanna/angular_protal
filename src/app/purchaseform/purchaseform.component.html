@@ -1,5 +1,130 @@
 <div class="container-fluid mx-auto pt-5 pb-5">
-<p>purchaseform works!</p>
-{{movieId}} - {{movie.title}}
-{{movieShowId}} - {{movieShow.id}}
+
+
+  <div class="card mx-auto my-3" style="width: 90%;">
+    <h4 class="card-header text-center text-primary">Κράτηση Εισιτηρίων</h4>
+    <div class="card-body justify-content-center small">
+      <h6 class="text-wrap text-center mb-4">{{movie.title}} - {{movieShow.showDate | date: 'dd/MM/yyyy'}} :
+        {{movieShow.startTime | date:'hh:mm'}}</h6>
+<!--      <form *ngIf="!isSuccessful"-->
+<!--            name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>-->
+<!--        <div class="row justify-content-center">-->
+<!--          <table class="table table-striped pb-5"-->
+<!--                 id="tableTeknoDikaiomata">-->
+<!--            <tr>-->
+<!--              <th class="text-center">ΔΙΚΑΙΩΜΑ</th>-->
+<!--              <th class="text-center">ΕΝΑΡΞΗ</th>-->
+<!--              <th class="text-center">ΛΗΞΗ</th>-->
+<!--              <th class="text-center"></th>-->
+<!--            </tr>-->
+<!--            <tr-->
+<!--              th:each="dikaioma:${@teknoDikaiomaIstorService.findByTeknoDikaiomaIstorTeknoIstorOrderByTaxinomisi(teknoIstor,roiSelected)}"-->
+<!--              th:attrappend="id='row'+${dikaioma.id}">-->
+<!--              <input type="hidden" th:name="automato" th:value="${dikaioma.eidosAytomato}">-->
+<!--              <input type="hidden" th:name="memonomeno" th:value="${dikaioma.eidosMemonomeno}">-->
+<!--              <input type="hidden" th:name="idDikaiomatos" th:value="${dikaioma.id}">-->
+<!--              <td class="text-center" th:text="${dikaioma.getTeknoDikaiomaEidosIdiotitas().lektiko}"></td>-->
+<!--              <td class="text-center"><input-->
+<!--                th:attrappend="id='imerominiaEnarxisDikaiomatos'+${dikaioma.id}"-->
+<!--                class="datepicker" placeholder="ΗΗ/ΜΜ/ΕΕΕΕ"-->
+<!--                th:name="imerominiaEnarxisDikaiomatos"-->
+<!--                th:value="${#dates.format(dikaioma.getImerominiaEnarxis(),'dd/MM/yyyy')}"></td>-->
+<!--              <td class="text-center">-->
+<!--                <input th:attrappend="id='imerominiaLixisDikaiomatos'+${dikaioma.id}"-->
+<!--                       class="datepicker" placeholder="ΗΗ/ΜΜ/ΕΕΕΕ"-->
+<!--                       th:name="imerominiaLixisDikaiomatos"-->
+<!--                       th:value="${#dates.format(dikaioma.getImerominiaLixis(),'dd/MM/yyyy')}">-->
+<!--              </td>-->
+<!--              <td-->
+<!--                th:if="${roiSelected.getRoiStatus().id<T(gr.elas.tekna.entity.Roi).STATUS_ANOIXTH_EXAGWGH_PROS_MISTHODOSIA}"-->
+<!--                class="text-center">-->
+<!--                <div class="modal fade"-->
+<!--                     th:attrappend="id='modalDeleteRowDikaioma' + ${dikaioma.id}"-->
+<!--                     tabindex="-1">-->
+<!--                  <div class="modal-dialog">-->
+<!--                    <div class="modal-content">-->
+<!--                      <div class="modal-header text-center">-->
+<!--                        <h4 class="modal-title w-100 font-weight-bold ml-5 text-danger">-->
+<!--                          Διαγραφή</h4>-->
+<!--                        <button type="button" class="close text-danger"-->
+<!--                                data-dismiss="modal" aria-label="Close">-->
+<!--                          <span aria-hidden="true">&times;</span>-->
+<!--                        </button>-->
+<!--                      </div>-->
+<!--                      <div class="modal-body mx-3" style="padding:0 0 0 0;">-->
+<!--                        <p class="text-center h4">Προσοχή!</p>-->
+<!--                        <p class="text-center h5">Αυτή η ενέργεια δεν μπορεί να-->
+<!--                          αναιρεθεί. Σε περίπτωση λήξης του δικαιώματος-->
+<!--                          καταχωρίστε-->
+<!--                          την ημερομηνία λήξης.</p>-->
+<!--                        <p class="text-center h5">Διαγραφή δικαιώματος;</p>-->
+<!--                        <div class="modal-footer d-flex justify-content-center deleteButtonsWrapper">-->
+<!--                          <button type="submit" class="btn btn-danger"-->
+<!--                                  th:onclick="|modalDeleteRowDikaioma(${dikaioma.id})|"-->
+<!--                                  th:attrappend="id='btnDeleteDikaiomaFlow' + ${dikaioma.id}"-->
+<!--                                  data-dismiss="modal" th:name="dikaiomaDelete">-->
+<!--                            Διαγραφή-->
+<!--                          </button>-->
+<!--                          <button type="button"-->
+<!--                                  class="btn btn-primary"-->
+<!--                                  th:attrappend="id='btnNoDikaioma' + ${dikaioma.id}"-->
+<!--                                  data-dismiss="modal">Άκυρο-->
+<!--                          </button>-->
+<!--                        </div>-->
+<!--                      </div>-->
+
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <button class="btn btn-sm btn-outline-danger" type="button"-->
+<!--                        th:attrappend="id='deleteDikaioma'+${dikaioma.id}, data-target='#modalDeleteRowDikaioma' + ${dikaioma.id}"-->
+<!--                        data-toggle="modal"><i class="fa fa-minus" data-toggle="tooltip"-->
+<!--                                               data-placement="top" title="Αφαίρεση"></i></button>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--        <div-->
+<!--          th:if="${roiSelected.getRoiStatus().id<T(gr.elas.tekna.entity.Roi).STATUS_ANOIXTH_EXAGWGH_PROS_MISTHODOSIA}"-->
+<!--          class="row justify-content-center">-->
+<!--          <div class="form-group row p-1 text-center">-->
+<!--            <button class="btn btn-sm btn-outline-primary m-2" type="button"-->
+<!--                    th:attrappend="id='addDikaioma'+${@teknoDikaiomaIstorService.findByTeknoDikaiomaIstorTeknoIstorOrderByTaxinomisi(teknoIstor,roiSelected).size()+1}"-->
+<!--                    th:onclick="|addRowDikaiomaThisFlow()|">-->
+<!--              Προσθήκη δικαιώματος μόνο για αυτή τη ροή-->
+<!--            </button>-->
+<!--            <button class="btn btn-sm btn-outline-info m-2" type="button"-->
+<!--                    th:attrappend="id='addDikaioma'+${@teknoDikaiomaIstorService.findByTeknoDikaiomaIstorTeknoIstorOrderByTaxinomisi(teknoIstor,roiSelected).size()+1}"-->
+<!--                    th:onclick="|addRowDikaiomaAllFlows()|">-->
+<!--              Προσθήκη δικαιώματος και για επόμενες ροές</i></button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div-->
+<!--          th:if="${roiSelected.getRoiStatus().id<T(gr.elas.tekna.entity.Roi).STATUS_ANOIXTH_EXAGWGH_PROS_MISTHODOSIA}"-->
+<!--          class="row justify-content-center">-->
+<!--          <div class="form-group row p-1 text-center">-->
+<!--            <button class="btn btn-danger btn-sm m-2 font-weight-bold" type="submit" th:name="submitForm"-->
+<!--                    value="cancel">Ακύρωση-->
+<!--            </button>-->
+<!--            <button class="btn btn-primary btn-sm m-2 font-weight-bold" type="submit" th:name="submitForm"-->
+<!--                    value="save">Αποθήκευση-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div th:if="${roiSelected.getRoiStatus().id>T(gr.elas.tekna.entity.Roi).STATUS_ANOIXTH_EPEXERGASIA_DIKAIOMATWN}"-->
+<!--             class="row justify-content-center">-->
+<!--          <div class="form-group row p-1 text-center">-->
+<!--            <button class="btn btn-primary btn-sm m-2 font-weight-bold" type="submit" th:name="submitForm"-->
+<!--                    value="cancel">Επιστροφή-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </form>-->
+
+    </div>
+  </div>
+
+  {{movieId}} - {{movie.title}}
+  {{movieShowId}} - {{movieShow.id}}
 </div>
