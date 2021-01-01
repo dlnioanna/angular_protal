@@ -16,10 +16,11 @@ const httpOptions = {
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   loginForm(email: string, password: string): Observable<any> {
-    return this.http.post<User>(baseUrl + 'login', {email, password});
+    return this.http.post<User>(baseUrl + 'login', {email, password}, httpOptions);
   }
 
   login(credentials): Observable<any> {
