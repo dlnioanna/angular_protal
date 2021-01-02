@@ -20,22 +20,22 @@ export class AuthService {
   }
 
   loginForm(email: string, password: string): Observable<any> {
-    return this.http.post<User>(baseUrl + 'login', {email, password}, httpOptions);
+    return this.http.post<User>(baseUrl + 'login', {email, password});
   }
 
   login(credentials): Observable<any> {
     return this.http.post(baseUrl + 'login', {
       username: credentials.username,
       password: credentials.password
-    }, httpOptions);
+    }, {observe: 'response'});
   }
 
-  register(user): Observable<any> {
+  register(user): any {
     return this.http.post(baseUrl + 'signup', {
       username: user.username,
       email: user.email,
       password: user.password
-    }, httpOptions);
+    });
   }
 
   logout(): void {

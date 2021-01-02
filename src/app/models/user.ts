@@ -14,7 +14,7 @@ export interface User {
   ticketsBought: Ticket[];
 }
 
-export class User {
-  constructor(public status: string) {
-  }
-}
+// export class User {
+//   constructor(public status: string) {
+//   }
+// }

@@ -12,16 +12,17 @@ export class AppInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
+    if (sessionStorage.getItem('username') && sessionStorage.getItem('auth-token')) {
       req = req.clone({
         setHeaders: {
-          Authorization: sessionStorage.getItem('token')
+          'Content-Type': 'application/json; charset=utf-8',
+          Authorization: 'Bearer' + sessionStorage.getItem('auth-token')
         }
       });
     }
-    const xhr = req.clone({
-      headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
-    });
+    // const xhr = req.clone({
+    //   headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+    // });
     return next.handle(req);
 
   }

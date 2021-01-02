@@ -61,7 +61,7 @@ import { AppInterceptor } from './services/appInterceptor';
     ProfileComponent,
     BoardUserComponent,
     BoardAdminComponent,
-    PurchaseformComponent
+    PurchaseformComponent,
   ],
   imports: [
     BrowserModule,
