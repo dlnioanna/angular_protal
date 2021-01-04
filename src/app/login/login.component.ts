@@ -1,8 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {TokenStorageService} from '../services/token-storage.service';
+import {SocialAuthService, SocialUser, GoogleLoginProvider} from 'angularx-social-login';
 import jwt_decode from 'jwt-decode';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {faGoogle} from '@fortawesome/free-brands-svg-icons/faGoogle';
+import {Router} from '@angular/router';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -18,8 +22,14 @@ export class LoginComponent implements OnInit {
   headerToken: string;
   username: string;
 
+  socialUser: SocialUser;
+  GoogleLoginProvider = GoogleLoginProvider;
+  token: string;
+  formGroup: FormGroup;
+  faGoogle = faGoogle;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) {
+  constructor(private socialAuthService: SocialAuthService, private authService: AuthService,
+              private tokenStorage: TokenStorageService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -28,27 +38,24 @@ export class LoginComponent implements OnInit {
       this.role = this.tokenStorage.getUserRole();
       this.username = this.tokenStorage.getUser();
     }
+    this.socialAuthService.authState.subscribe((socialUser) => {
+      this.socialUser = socialUser;
+    });
   }
 
   onSubmit(): void {
     this.authService.login(this.form).subscribe(
       response => {
-        console.log('header ' + response.headers.get('Authorization'));
         this.headerToken = response.headers.get('Authorization').replace('Bearer', '');
-        console.log('headerToken ' + this.headerToken);
         const decodedToken = atob(this.headerToken.split('.')[1]);
-        console.log('atob ' + decodedToken);
         const tokenJson = JSON.parse(decodedToken);
-        console.log('tokenJson ' + tokenJson);
         this.username = tokenJson.sub;
         this.role = tokenJson.authorities[0].authority;
-        console.log('sub is ' + this.username);
-        console.log('auth is ' + this.role);
         this.tokenStorage.saveToken(this.headerToken);
         this.tokenStorage.saveUser(this.username);
         this.tokenStorage.saveUserRole(this.role);
         this.isLoginFailed = false;
-        this.isLoggedIn = true;
+        this.router.navigate(['/index']);
       },
       err => {
         this.errorMessage = err.error.message;
@@ -59,5 +66,13 @@ export class LoginComponent implements OnInit {
 
   reloadPage(): void {
     window.location.reload();
+  }
+
+  signInWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.socialAuthService.signOut();
   }
 }

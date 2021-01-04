@@ -1,43 +1,103 @@
-<div class="col-md-12" style="padding-top: 20px">
+<div class="container mx-auto pt-5 pb-5">
   <div class="card card-container">
+    <div class="card-header text-sm-center custom-blue">Εγγραφή</div>
     <form *ngIf="!isSuccessful"
           name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div class="form-group">
-        <label for="username">username</label>
-        <input type="text" class="form-control" name="username" [(ngModel)]="form.username"
-               required #username="ngModel" minlength="3" maxlength="20" id="username"/>
-        <div class="alert-danger" *ngIf="f.submitted && username.invalid">
-          <div *ngIf="username.errors.required">Name is required</div>
-          <div *ngIf="username.errors.minlength">Username be at least 3 characters</div>
-          <div *ngIf="username.errors.maxlength">Username must be less than 20 characters</div>
+      <!-- ονομα-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="name">Όνομα</label></div>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" name="name" [(ngModel)]="form.name"
+                 required #name="ngModel" minlength="3" id="name"/>
+          <div class="alert-danger" *ngIf="f.submitted && name.invalid">
+            <div *ngIf="name.errors.required">Το όνομα είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="name.errors.minlength">Το όνομα πρέπει να αποτελείται τουλάχιστον από 3 γράμματα</div>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label for="email">email</label>
-        <input type="email" class="form-control" name="email" id="email"
-               [(ngModel)]="form.email" required #email="ngModel"/>
-        <div class="alert-danger" *ngIf="f.submitted && email.invalid">
-           <div *ngIf="email.errors.required">Email is required</div>
-           <div *ngIf="email.errors.email">email must be valid</div>
+      <!-- Επίθετο-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="lastname">Επίθετο</label></div>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" name="lastName" [(ngModel)]="form.lastName"
+                 required #lastName="ngModel" minlength="3" id="lastName"/>
+          <div class="alert-danger" *ngIf="f.submitted && lastName.invalid">
+            <div *ngIf="lastName.errors.required">Το επίθετο είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="lastName.errors.minlength">Το επίθετο πρέπει να αποτελείται τουλάχιστον από 3 γράμματα</div>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
+      <!-- Τηλέφωνο-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="telephone">Τηλέφωνο</label></div>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" name="telephone" [(ngModel)]="form.telephone"
+                 required #telephone="ngModel" minlength="3" id="telephone"/>
+          <div class="alert-danger" *ngIf="f.submitted && telephone.invalid">
+            <div *ngIf="telephone.errors.required">Το επίθετο είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="telephone.errors.minlength">Το επίθετο πρέπει να αποτελείται τουλάχιστον από 3 γράμματα</div>
+          </div>
+        </div>
+      </div>
+      <!-- username-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="username">username</label></div>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" name="username" [(ngModel)]="form.username"
+                 required #username="ngModel" minlength="3" maxlength="20" id="username"/>
+          <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.required">Το username είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="username.errors.minlength">Το username πρέπει να αποτελείται τουλάχιστον από 3 γράμματα</div>
+            <div *ngIf="username.errors.maxlength">Το username πρέπει να περιέχει λιγότερο από 20 γράμματα</div>
+          </div>
+        </div>
+      </div>
+      <!-- email-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="email">email</label></div>
+        <div class="col-sm-7">
+          <input type="email" class="form-control" name="email" id="email"
+                 [(ngModel)]="form.email" required #email="ngModel"/>
+          <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required">Το Email είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="email.errors.email">Το Email δεν είναι έγκυρο</div>
+          </div>
+        </div>
+      </div>
+      <!-- password-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="password">Password</label></div>
+        <div class="col-sm-7">
         <input type="password" class="form-control" name="password" id="password"
                [(ngModel)]="form.password" required minlength="6" #password="ngModel">
         <div class="alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
-          <div *ngIf="password.errors.required">Password is required</div>
-          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+          <div *ngIf="password.errors.required">Το Password είναι απαραίτητο για να συνεχίσετε</div>
+          <div *ngIf="password.errors.minlength">Το Email πρέπει να αποτελείται από τουλάχιστον 6 γράμματα</div>
+        </div>
         </div>
       </div>
-<div class="form-group">
-  <button class="btn btn-info btn-block">Sign up</button>
-</div>
+      <!-- εικόνα -->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="telephone">Εικόνα</label></div>
+        <div class="col-sm-7">
+          <input type="file" (change)="onFileChanged($event)"></div>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-info btn-block w-25 m-auto">Εγγραφή</button>
+      </div>
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Sign up failed! <br>{{errorMessage}}
+        Η εγγραφή σας ήταν επιτυχής! <br>{{errorMessage}}
       </div>
     </form>
-    <div class="alert alert-success" *ngIf="isSuccessful">Your registration is successful!</div>
+    <div class="alert alert-success" *ngIf="isSuccessful">Η εγγραφή σας ήταν επιτυχής!</div>
 
   </div>
 </div>

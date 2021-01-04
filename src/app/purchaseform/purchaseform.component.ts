@@ -29,7 +29,6 @@ export class PurchaseformComponent implements OnInit {
         this.movieId = params.movieId;
         this.movieShowId = params.movieShowId;
       });
-    console.log('movie id is  ' + this.movieId + ' and movieshow id is ' + this.movieShowId);
     this.purchaseformService.getMovieById(this.movieId).subscribe(
       movie => this.movie = movie);
     this.purchaseformService.getMovieShowById(this.movieShowId).subscribe(

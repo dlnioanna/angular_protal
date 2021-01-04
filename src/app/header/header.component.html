@@ -7,22 +7,19 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="tokenStorageService.getToken()">
         <a class="nav-link" routerLink="/movies">Ταινίες</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="tokenStorageService.getToken()">
         <a class="nav-link" routerLink="/movieShows">Προβολές</a>
       </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
+      <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='ROLE_ADMIN'">
         <a class="nav-link" routerLink="/admin">admin</a>
       </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
+      <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='ROLE_USER'">
         <a class="nav-link" routerLink="/user">user</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/account">Λογαριασμός</a>
-      </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='ROLE_ADMIN'">
         <a class="nav-link" routerLink="/admin_panel">Διαχείριση</a>
       </li>
       <li class="nav-item">
@@ -30,19 +27,19 @@
       </li>
     </ul>
 
-      <div *ngIf="!isLoggedIn" class="nav-item">
-        <a href="/register" class="nav-link" routerLink="/register">register</a>
+      <div *ngIf="!tokenStorageService.getToken()" class="nav-item">
+        <a class="nav-link" routerLink="/register">register</a>
       </div>
-      <div *ngIf="!isLoggedIn" class="nav-item">
-        <a href="/login" class="nav-link" routerLink="/login">login</a>
+      <div *ngIf="!tokenStorageService.getToken()" class="nav-item">
+        <a class="nav-link" routerLink="/login">login</a>
       </div>
 
-    <div *ngIf="isLoggedIn" class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile" (click)="logout()">{{username}}</a>
+    <div *ngIf="tokenStorageService.getToken()" class="nav-item">
+        <a class="nav-link" routerLink="profile" (click)="logout()">Αποσύνδεση</a>
     </div>
 
-    <div>
-      <a class="nav-link" routerLink="/account">Λογαριασμός</a>
+    <div *ngIf="tokenStorageService.getToken()">
+      <a class="nav-link" routerLink="/account">Λογαριασμός {{tokenStorageService.getUser()}}</a>
     </div>
 
   </div>

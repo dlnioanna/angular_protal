@@ -6,8 +6,8 @@ import {map} from 'rxjs/operators';
 
 
 const baseUrl = 'http://localhost:8080/';
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
+const httpOptions:{headers; observe; } = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'}), observe: 'response'
 };
 
 
@@ -30,12 +30,17 @@ export class AuthService {
     }, {observe: 'response'});
   }
 
-  register(user): any {
-    return this.http.post(baseUrl + 'signup', {
-      username: user.username,
+  register(user, imageFile): any {
+    return this.http.post(baseUrl + 'register', {
+      name: user.name,
+      lastName: user.lastName,
+      telephone: user.telephone,
       email: user.email,
-      password: user.password
-    });
+      username: user.username,
+      password: user.password,
+      role: 'ROLE_USER',
+      imageFile
+    }, httpOptions);
   }
 
   logout(): void {
@@ -44,26 +49,26 @@ export class AuthService {
   }
 
 
-  authenticate(username, password): Observable<any> {
-    return this.http.post<any>(baseUrl + 'login', {username, password}, httpOptions).pipe(
-      map(
-        userData => {
-          sessionStorage.setItem('username', username);
-          const tokenStr = 'Bearer ' + userData.token;
-          sessionStorage.setItem('token', tokenStr);
-          return userData;
-        }
-      )
-    );
-  }
+  // authenticate(username, password): Observable<any> {
+  //   return this.http.post<any>(baseUrl + 'login', {username, password}, httpOptions).pipe(
+  //     map(
+  //       userData => {
+  //         sessionStorage.setItem('username', username);
+  //         const tokenStr = 'Bearer ' + userData.token;
+  //         sessionStorage.setItem('token', tokenStr);
+  //         return userData;
+  //       }
+  //     )
+  //   );
+  // }
 
 
-  isUserLoggedIn(): any {
-    const user = sessionStorage.getItem('username');
-    return !(user === null);
-  }
+  // isUserLoggedIn(): any {
+  //   const user = sessionStorage.getItem('username');
+  //   return !(user === null);
+  // }
 
-  logOut(): void {
-    sessionStorage.removeItem('username');
-  }
+  // logOut(): void {
+  //   sessionStorage.removeItem('username');
+  // }
 }

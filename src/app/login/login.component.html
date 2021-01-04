@@ -1,27 +1,34 @@
-<div class="container-fluid mx-auto pt-5 pb-5">
-<div class="col-md-12 pt-5">
-  <div class="card card-container pt-5">
-    <form *ngIf="!isLoggedIn"
+<div class="container mx-auto pt-5 pb-5">
+
+  <div *ngIf="!isLoggedIn && !socialUser" class="card card-container mb-2">
+    <div class="card-header text-sm-center custom-blue">Σύνδεση</div>
+    <form
           name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div class="form-group">
-        <label for="username">username</label>
-        <input type="text" class="form-control" name="username" [(ngModel)]="form.username"
-               required #username="ngModel" id="username"/>
-        <div class="alert-danger" role="alert" *ngIf="f.submitted && username.invalid">
-          Username is required!
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="username">Username</label></div>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" name="username" [(ngModel)]="form.username"
+                 required #username="ngModel" id="username"/>
+          <div class="alert-danger" role="alert" *ngIf="f.submitted && username.invalid">
+            Username is required!
+          </div>
+        </div>
+      </div>
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="password">Password</label></div>
+        <div class="col-sm-7">
+          <input type="password" class="form-control" name="password" id="password"
+                 [(ngModel)]="form.password" required minlength="6" #password="ngModel">
+          <div class="alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" id="password"
-               [(ngModel)]="form.password" required minlength="6" #password="ngModel">
-        <div class="alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
-          <div *ngIf="password.errors.required">Password is required</div>
-          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary btn-block">
+        <button class="btn btn-primary btn-block w-25 m-auto">
           Login
         </button>
       </div>
@@ -36,5 +43,28 @@
       Logged in as {{role}}.
     </div>
   </div>
+
+
+  <div *ngIf="!isLoggedIn" class="card card-container mt-2">
+    <div *ngIf="!socialUser" class="card-header text-sm-center custom-blue">Συνδεσή με λογαριασμό Google
+      </div>
+    <div *ngIf="!socialUser" class="card-block m-auto">
+      <button type="button" mdbBtn color="red" class="waves-light " mdbWavesEffect (click)="signInWithGoogle()">
+        <i class="fab fa-google-plus left "></i>Google+</button>
+    </div>
+    <div *ngIf="socialUser" class="card text-center socialCard">
+      <div class="card-block"></div>
+      <img *ngIf="socialUser.photoUrl" class="card-img-top img-responsive photo" src="{{ socialUser.photoUrl }}">
+      <div class="card-block">
+        <h4 class="card-title">{{ socialUser.name }}</h4>
+        <p class="card-text">{{ socialUser.email }}</p>
+        <p class="card-text">Logged in with {{ socialUser.provider }}</p>
+<!--        <p class="card-text">{{ socialUser.idToken }}</p>-->
+      </div>
+      <div class="card-block">
+        <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
+<!--</div>-->

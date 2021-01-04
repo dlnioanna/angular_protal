@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Routes} from '@angular/router';
 import {TokenStorageService} from '../services/token-storage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,31 +8,27 @@ import {TokenStorageService} from '../services/token-storage.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private roles: string[];
-  isLoggedIn = false;
+  private role: string;
   showAdminBoard = false;
   showUserBoard = false;
   username: string;
+  isLoggedIn = false;
 
-  constructor(private tokenStorageService: TokenStorageService) {
+  constructor(public tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showUserBoard = this.roles.includes('ROLE_USER');
-
-      this.username = user.username;
-    }
+    // this.isLoggedIn = !!this.tokenStorageService.getToken();
+    // if (this.isLoggedIn) {
+    //   this.role = this.tokenStorageService.getUserRole();
+    //   this.username = this.tokenStorageService.getUser();
+    //   this.showAdminBoard = this.role === 'ROLE_ADMIN';
+    //   this.showUserBoard = this.role === 'ROLE_USER';
+    // }
   }
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.reload();
   }
 
 }

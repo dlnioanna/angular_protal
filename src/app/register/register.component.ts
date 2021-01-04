@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
+import {User} from '../models/user';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,8 @@ export class RegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  selectedFile: File;
+  user: User;
 
   constructor(private authService: AuthService) {
   }
@@ -19,11 +22,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.authService.register(this.form).subscribe(
-      data => {
-        console.log(data);
+    const uploadImageData = new FormData();
+    uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
+    this.authService.register(this.form, uploadImageData).subscribe(
+      response => {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        console.log(response);
       },
       err => {
         this.errorMessage = err.errorMessage;
@@ -32,5 +37,8 @@ export class RegisterComponent implements OnInit {
     );
   }
 
+  public onFileChanged(event): void {
+    this.selectedFile = event.target.files[0];
+  }
 
 }
