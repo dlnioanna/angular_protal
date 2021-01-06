@@ -45,26 +45,26 @@
   </div>
 
 
-  <div *ngIf="!isLoggedIn" class="card card-container mt-2">
+  <div *ngIf="!isLoggedIn && !socialUser" class="card card-container mt-2">
     <div *ngIf="!socialUser" class="card-header text-sm-center custom-blue">Συνδεσή με λογαριασμό Google
       </div>
     <div *ngIf="!socialUser" class="card-block m-auto">
       <button type="button" mdbBtn color="red" class="waves-light " mdbWavesEffect (click)="signInWithGoogle()">
         <i class="fab fa-google-plus left "></i>Google+</button>
     </div>
-    <div *ngIf="socialUser" class="card text-center socialCard">
-      <div class="card-block"></div>
-      <img *ngIf="socialUser.photoUrl" class="card-img-top img-responsive photo" src="{{ socialUser.photoUrl }}">
-      <div class="card-block">
-        <h4 class="card-title">{{ socialUser.name }}</h4>
-        <p class="card-text">{{ socialUser.email }}</p>
-        <p class="card-text">Logged in with {{ socialUser.provider }}</p>
-<!--        <p class="card-text">{{ socialUser.idToken }}</p>-->
-      </div>
-      <div class="card-block">
-        <button class="btn btn-danger" (click)="signOut()">Sign out</button>
-      </div>
-    </div>
   </div>
+  <div *ngIf="socialUser" class="card text-center socialCard">
+  <img *ngIf="socialUser.photoUrl" class="card-img-top img-responsive photo" src="{{ socialUser.photoUrl }}">
+  <div class="card-block">
+    <h4 class="card-title">{{ socialUser.name }}</h4>
+    <p class="card-text">{{ socialUser.email }}</p>
+    <p class="card-text">Logged in with {{ socialUser.provider }}</p>
+    <!--        <p class="card-text">{{ socialUser.idToken }}</p>-->
+  </div>
+  <div class="card-block">
+    <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+  </div>
+</div>
+
 </div>
 <!--</div>-->

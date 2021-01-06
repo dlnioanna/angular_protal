@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
     }
     this.socialAuthService.authState.subscribe((socialUser) => {
       this.socialUser = socialUser;
+
     });
   }
 

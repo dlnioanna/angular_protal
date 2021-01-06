@@ -1,7 +1,7 @@
 <div class="container mx-auto pt-5 pb-5">
   <div class="card card-container">
     <div class="card-header text-sm-center custom-blue">Εγγραφή</div>
-    <form *ngIf="!isSuccessful"
+    <form *ngIf="!isSuccessful" enctype="multipart/form-data"
           name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <!-- ονομα-->
       <div class="form-group row col-12 p-3 justify-content-around">
@@ -35,10 +35,10 @@
           <label for="telephone">Τηλέφωνο</label></div>
         <div class="col-sm-7">
           <input type="text" class="form-control" name="telephone" [(ngModel)]="form.telephone"
-                 required #telephone="ngModel" minlength="3" id="telephone"/>
+                 required #telephone="ngModel" minlength="10" maxlength="10" id="telephone"/>
           <div class="alert-danger" *ngIf="f.submitted && telephone.invalid">
-            <div *ngIf="telephone.errors.required">Το επίθετο είναι απαραίτητο για να συνεχίσετε</div>
-            <div *ngIf="telephone.errors.minlength">Το επίθετο πρέπει να αποτελείται τουλάχιστον από 3 γράμματα</div>
+            <div *ngIf="telephone.errors.required">Το τηλέφωνο είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="telephone.errors.minlength">Το τηλέφωνο πρέπει να αποτελείται από 10 αριθμους</div>
           </div>
         </div>
       </div>
@@ -78,25 +78,26 @@
                [(ngModel)]="form.password" required minlength="6" #password="ngModel">
         <div class="alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
           <div *ngIf="password.errors.required">Το Password είναι απαραίτητο για να συνεχίσετε</div>
-          <div *ngIf="password.errors.minlength">Το Email πρέπει να αποτελείται από τουλάχιστον 6 γράμματα</div>
+          <div *ngIf="password.errors.minlength">Το Password πρέπει να αποτελείται από τουλάχιστον 6 γράμματα</div>
         </div>
         </div>
       </div>
       <!-- εικόνα -->
-      <div class="form-group row col-12 p-3 justify-content-around">
+      <div class="row col-12 p-3 justify-content-around">
         <div class="col-sm-5 text-sm-center custom-blue">
-          <label for="telephone">Εικόνα</label></div>
+          <label for="image">Εικόνα</label></div>
         <div class="col-sm-7">
-          <input type="file" (change)="onFileChanged($event)"></div>
+          <input type="file" id="image" (change)="onFileChanged($event)"></div>
       </div>
-
       <div class="form-group">
         <button class="btn btn-info btn-block w-25 m-auto">Εγγραφή</button>
       </div>
-      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Η εγγραφή σας ήταν επιτυχής! <br>{{errorMessage}}
-      </div>
     </form>
+
+      <div class="alert alert-danger" *ngIf="isSignUpFailed">
+        Η εγγραφή σας απέτυχε! <br>{{errorMessage}}
+      </div>
+
     <div class="alert alert-success" *ngIf="isSuccessful">Η εγγραφή σας ήταν επιτυχής!</div>
 
   </div>

@@ -10,11 +10,12 @@ export interface User {
   image: string;
   username: string;
   password: string;
+  role: string;
   userPurchases: Purchase[];
   ticketsBought: Ticket[];
 }
 
-// export class User {
-//   constructor(public status: string) {
-//   }
-// }
+export class User {
+  constructor() {
+  }
+}

@@ -1,13 +1,15 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Type} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../models/user';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-
 
 const baseUrl = 'http://localhost:8080/';
-const httpOptions:{headers; observe; } = {
+const httpOptions: { headers; observe; } = {
   headers: new HttpHeaders({'Content-Type': 'application/json'}), observe: 'response'
+};
+
+const httpOptions2: { headers; observe; } = {
+  headers: new HttpHeaders({'Content-Type': 'multipart/form-data', boundary: '---boundary---'}), observe: 'response'
 };
 
 
@@ -30,17 +32,18 @@ export class AuthService {
     }, {observe: 'response'});
   }
 
-  register(user, imageFile): any {
-    return this.http.post(baseUrl + 'register', {
-      name: user.name,
-      lastName: user.lastName,
-      telephone: user.telephone,
-      email: user.email,
-      username: user.username,
-      password: user.password,
-      role: 'ROLE_USER',
-      imageFile
-    }, httpOptions);
+  register(user): Observable<any> {
+    return this.http.post<User>(baseUrl + 'register', {
+      // name: user.name,
+      // lastName: user.lastName,
+      // telephone: user.telephone,
+      // email: user.email,
+      // username: user.username,
+      // password: user.password,
+      // role: 'USER',
+      // image: user.image
+      user
+    }, {observe: 'response'});
   }
 
   logout(): void {

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {User} from '../models/user';
+import {base64UrlEncode} from 'angular-oauth2-oidc/base64-helper';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -13,28 +15,43 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   selectedFile: File;
-  user: User;
 
-  constructor(private authService: AuthService) {
+  // name: string;
+  // lastName: string;
+  // telephone: number;
+  // email: string;
+  // username: string;
+  // password: string;
+  //
+
+  constructor(private httpClient: HttpClient) {
   }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    const uploadImageData = new FormData();
-    uploadImageData.append('image', this.selectedFile, this.selectedFile.name);
-    this.authService.register(this.form, uploadImageData).subscribe(
-      response => {
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-        console.log(response);
-      },
-      err => {
-        this.errorMessage = err.errorMessage;
-        this.isSignUpFailed = true;
-      }
-    );
+    const uploadData = new FormData();
+    if (this.selectedFile) {
+      uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    }
+    uploadData.append('name', this.form.name);
+    uploadData.append('lastName', this.form.lastName);
+    uploadData.append('telephone', this.form.telephone);
+    uploadData.append('email', this.form.email);
+    uploadData.append('username', this.form.username);
+    uploadData.append('password', this.form.password);
+    this.httpClient.post('http://localhost:8080/register', uploadData, {observe: 'response'})
+      .subscribe(
+        response => {
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        err => {
+          this.errorMessage = err.errorMessage;
+          this.isSignUpFailed = true;
+        }
+      );
   }
 
   public onFileChanged(event): void {
