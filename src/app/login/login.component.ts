@@ -38,10 +38,9 @@ export class LoginComponent implements OnInit {
       this.role = this.tokenStorage.getUserRole();
       this.username = this.tokenStorage.getUser();
     }
-    this.socialAuthService.authState.subscribe((socialUser) => {
-      this.socialUser = socialUser;
-
-    });
+    // this.socialAuthService.authState.subscribe((socialUser) => {
+    //   this.socialUser = socialUser;
+    // });
   }
 
   onSubmit(): void {
@@ -56,11 +55,13 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveUser(this.username);
         this.tokenStorage.saveUserRole(this.role);
         this.isLoginFailed = false;
+        this.isLoggedIn = true;
         this.router.navigate(['/index']);
       },
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
+        this.isLoggedIn = false;
       }
     );
   }
@@ -71,9 +72,27 @@ export class LoginComponent implements OnInit {
 
   signInWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.socialAuthService.authState.subscribe((socialUser) => {
+        this.socialUser = socialUser;
+        this.headerToken = this.socialUser.idToken;
+        this.tokenStorage.saveToken(this.headerToken);
+        this.tokenStorage.saveUser(this.socialUser.firstName);
+        this.tokenStorage.saveUserRole('USER');
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.router.navigate(['/index']);
+      },
+      error => {
+        this.errorMessage = error.error.message;
+        this.isLoginFailed = true;
+        this.isLoggedIn = false;
+
+      });
   }
 
   signOut(): void {
     this.socialAuthService.signOut();
+    this.tokenStorage.signOut();
+    this.isLoggedIn = false;
   }
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../services/token-storage.service';
 import {Router} from '@angular/router';
+import {SocialAuthService} from 'angularx-social-login';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +9,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private role: string;
+  role: string;
   showAdminBoard = false;
   showUserBoard = false;
   username: string;
   isLoggedIn = false;
 
-  constructor(public tokenStorageService: TokenStorageService) {
+  constructor(public tokenStorageService: TokenStorageService, private socialAuthService: SocialAuthService) {
   }
 
   ngOnInit(): void {
@@ -29,6 +30,8 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
+    this.socialAuthService.signOut();
+    this.isLoggedIn = false;
   }
 
 }

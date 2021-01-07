@@ -35,18 +35,7 @@ export class PurchaseformComponent implements OnInit {
       movieShows => this.movieShow = movieShows);
   }
 
-}
+  buyTickets(): void {
 
-  // onSubmit(): void {
-  // this.authService.register(this.form).subscribe(
-  //   data => {
-  //     console.log(data);
-  //     this.isSuccessful = true;
-  //     this.isSignUpFailed = false;
-  //   },
-  //   err => {
-  //     this.errorMessage = err.errorMessage;
-  //     this.isSignUpFailed = true;
-  //   }
-  // );
-// }
+  }
+}

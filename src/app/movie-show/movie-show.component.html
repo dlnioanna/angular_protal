@@ -14,65 +14,114 @@
   <div *ngFor="let movie of movies; index as i">
     <div class="row col-sm-12" *ngIf="i % 3 == 0">
       <div class="col-sm-4 mb-5">
-        <div class="card" *ngIf="movies[i]">
-          <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i].poster">
-          <div class="card-body">
-            <h5 class="card-title">{{movies[i].title}}</h5>
-            <p class="card-text text-justify"> {{movies[i].description}}</p>
-          </div>
-          <div class="list-group list-group-flush">
-            <div class="list-group-item"><span>Προβολές :</span><br>
-              <li *ngFor="let movieShow of movies[i].movieShowsOfMovie">
-                {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
-                {{movieShow.startTime | date:'hh:mm'}}
-                <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
-                <br>
-                <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
-                <br></li></div>
-            <div class="list-group-item nav-link">
-              <a [routerLink]="['/purchase']" [queryParams]="{movieId : movies[i].id}">Κράτηση</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4 mb-5">
-        <div class="card" *ngIf="movies[i+1]">
-          <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i+1].poster">
-          <div class="card-body">
-            <h5 class="card-title">{{movies[i + 1].title}}</h5>
-            <p class="card-text text-justify"> {{movies[i + 1].description}}</p>
-          </div>
-          <div class="list-group list-group-flush">
-            <div class="list-group-item"><span>Προβολές :</span><br>
-              <li *ngFor="let movieShow of movies[i+1].movieShowsOfMovie">
-                {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
-                {{movieShow.startTime | date:'hh:mm'}}
-                <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
-                <br>
-                <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
-                <br></li></div>
-            <div class="list-group-item nav-link">
-              <a [routerLink]="['/purchase']" [queryParams]="{movieId : movies[i+1].id}">Κράτηση</a></div>
+        <div class="grid-wrapper" *ngIf="movies[i]">
+          <div class="card-container box">
+            <div class="card-flip">
+              <div class="card front">
+                <img [src]="'data:image/jpeg;base64,'+movies[i].poster" class="card-img-top img-fluid" alt="movie-poster">
+                <div class="card-block">
+                  <h5 class="card-title">{{movies[i].title}}</h5>
+                  <p class="card-text text-justify p-2">{{movies[i].description}}</p>
+                  <p class="card-text"><small class="text-muted">{{movies[i].movieYear}}</small></p>
+                </div>
+              </div>
+              <div class="card back">
+                <div class="card-block text-center">
+                  <h4 class="card-title">Rating</h4>
+                  <p class="card-text">{{movies[i].rating}}/10</p>
+                  <div class="list-group list-group-flush">
+                    <div class="list-group-item card-text" style="background-color:#010626">
+                      <span class="font-weight-bold">ΠΡΟΒΟΛΕΣ :</span><br>
+                      <li class="card-text" *ngFor="let movieShow of movies[i].movieShowsOfMovie">
+                        {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
+                        {{movieShow.startTime | date:'hh:mm'}}
+                        <br>
+                        <span>Αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
+                        -
+                        <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
+                        <br>
+                      </li></div>
+                    <div class="list-group-item nav-link" style="background-color:#010626">
+                      <a [routerLink]="['/purchase']" [queryParams]="{movieId : movies[i].id}">Κράτηση</a></div>
+                  </div>
+                </div>
+                <img class="movie" [src]="'data:image/jpeg;base64,'+movies[i].poster" alt="back-img">
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-sm-4 mb-5">
-        <div class="card" *ngIf="movies[i+2]">
-          <img class="card-img-top" [src]="'data:image/jpeg;base64,'+movies[i+2].poster">
-          <div class="card-body">
-            <h5 class="card-title">{{movies[i + 2].title}}</h5>
-            <p class="card-text text-justify"> {{movies[i + 2].description}}</p>
+        <div class="grid-wrapper" *ngIf="movies[i+1]">
+          <div class="card-container box">
+            <div class="card-flip">
+              <div class="card front">
+                <img [src]="'data:image/jpeg;base64,'+movies[i+1].poster" class="card-img-top img-fluid" alt="movie-poster">
+                <div class="card-block">
+                  <h5 class="card-title">{{movies[i+1].title}}</h5>
+                  <p class="card-text text-justify p-2">{{movies[i+1].description}}</p>
+                  <p class="card-text"><small class="text-muted">{{movies[i+1].movieYear}}</small></p>
+                </div>
+              </div>
+              <div class="card back">
+                <div class="card-block text-center">
+                  <h4 class="card-title">Rating</h4>
+                  <p class="card-text">{{movies[i+1].rating}}/10</p>
+                  <div class="list-group list-group-flush">
+                    <div class="list-group-item card-text" style="background-color:#010626">
+                      <span class="font-weight-bold">ΠΡΟΒΟΛΕΣ :</span><br>
+                      <li class="card-text" *ngFor="let movieShow of movies[i+1].movieShowsOfMovie">
+                        {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
+                        {{movieShow.startTime | date:'hh:mm'}}
+                        <br>
+                        <span>Αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
+                        -
+                        <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
+                        <br></li></div>
+                    <div class="list-group-item nav-link" style="background-color:#010626">
+                      <a [routerLink]="['/purchase']" [queryParams]="{movieId : movies[i+1].id}">Κράτηση</a></div>
+                  </div>
+                </div>
+                <img class="movie" [src]="'data:image/jpeg;base64,'+movies[i+1].poster" alt="back-img">
+              </div>
+            </div>
           </div>
-          <div class="list-group list-group-flush">
-            <div class="list-group-item"><span>Προβολές :</span><br>
-              <li *ngFor="let movieShow of movies[i+2].movieShowsOfMovie">
-                {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
-                {{movieShow.startTime | date:'hh:mm'}}
-                <span>αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
-                <br>
-                <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
-                <br></li></div>
-            <div class="list-group-item nav-link">
-              <a [routerLink]="['/purchase']" [queryParams]="{movieId : movies[i+2].id}">Κράτηση</a></div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-5">
+        <div class="grid-wrapper" *ngIf="movies[i+2]">
+          <div class="card-container box">
+            <div class="card-flip">
+              <div class="card front">
+                <img [src]="'data:image/jpeg;base64,'+movies[i+2].poster" class="card-img-top" alt="movie-poster">
+                <div class="card-block">
+                  <h5 class="card-title">{{movies[i+2].title}}</h5>
+                  <p class="card-text text-justify p-2">{{movies[i+2].description}}</p>
+                  <p class="card-text"><small class="text-muted">{{movies[i+2].movieYear}}</small></p>
+                </div>
+              </div>
+              <div class="card back">
+                <div class="card-block text-center">
+                  <h4 class="card-title">Rating</h4>
+                  <p class="card-text">{{movies[i+2].rating}}/10</p>
+                  <div class="list-group list-group-flush">
+                    <div class="list-group-item card-text" style="background-color:#010626">
+                      <span class="font-weight-bold">ΠΡΟΒΟΛΕΣ :</span><br>
+                      <li class="card-text" *ngFor="let movieShow of movies[i+2].movieShowsOfMovie">
+                        {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
+                        {{movieShow.startTime | date:'hh:mm'}}
+                        <br>
+                        <span>Αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
+                        -
+                        <span>Διαθέσιμες θέσεις {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}</span>
+                        <br></li></div>
+                    <div class="list-group-item nav-link" style="background-color:#010626">
+                      <a [routerLink]="['/purchase']" [queryParams]="{movieId : movies[i+2].id}">Κράτηση</a></div>
+                  </div>
+                </div>
+                <img class="movie" [src]="'data:image/jpeg;base64,'+movies[i+2].poster" alt="back-img">
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -13,10 +13,10 @@
       <li class="nav-item" *ngIf="tokenStorageService.getToken()">
         <a class="nav-link" routerLink="/movieShows">Προβολές</a>
       </li>
-      <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='ROLE_ADMIN'">
+      <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='ADMIN'">
         <a class="nav-link" routerLink="/admin">admin</a>
       </li>
-      <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='ROLE_USER'">
+      <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='USER'">
         <a class="nav-link" routerLink="/user">user</a>
       </li>
       <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='ROLE_ADMIN'">
@@ -35,7 +35,7 @@
       </div>
 
     <div *ngIf="tokenStorageService.getToken()" class="nav-item">
-        <a class="nav-link" routerLink="profile" (click)="logout()">Αποσύνδεση</a>
+        <a class="nav-link" routerLink="/index" (click)="logout()">Αποσύνδεση</a>
     </div>
 
     <div *ngIf="tokenStorageService.getToken()">
