@@ -22,8 +22,8 @@
           <input type="password" class="form-control" name="password" id="password"
                  [(ngModel)]="form.password" required minlength="6" #password="ngModel">
           <div class="alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
-            <div *ngIf="password.errors.required">Password is required</div>
-            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+            <div *ngIf="password.errors.required">Απαιτείται κωδικός πρόσβασης</div>
+            <div *ngIf="password.errors.minlength">Ο κωδικός πρόσβασης αποτελείται από τουλάχιστον 6 χαρακτήρες</div>
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
   <div class="card-block">
     <h4 class="card-title">{{ socialUser.name }}</h4>
     <p class="card-text">{{ socialUser.email }}</p>
-    <p class="card-text">Logged in with {{ socialUser.provider }}</p>
+    <p class="card-text">Σύνδεση με {{ socialUser.provider }}</p>
     <!--        <p class="card-text">{{ socialUser.idToken }}</p>-->
   </div>
   <div class="card-block">

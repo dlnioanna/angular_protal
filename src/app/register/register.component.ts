@@ -16,14 +16,6 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
   selectedFile: File;
 
-  // name: string;
-  // lastName: string;
-  // telephone: number;
-  // email: string;
-  // username: string;
-  // password: string;
-  //
-
   constructor(private httpClient: HttpClient) {
   }
 

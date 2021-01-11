@@ -1,0 +1,17 @@
+
+.custom-dark-blue { color: #010626; }
+.custom-blue { color: #021F59; }
+.custom-light-blue { color: #033E8C; }
+.custom-very-light-blue { color: #05DBF2; }
+.custom-grey { color: #BFAE99; }
+
+.card{
+  width: 30rem;
+  height: 40rem;
+  margin:auto;
+}
+.socialCard{
+  width: 20rem;
+  height: 30rem;
+  margin:auto;
+}

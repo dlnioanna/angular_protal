@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../services/token-storage.service';
 import {Router} from '@angular/router';
-import {SocialAuthService} from 'angularx-social-login';
+import {SocialAuthService, SocialUser} from 'angularx-social-login';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,24 +15,33 @@ export class HeaderComponent implements OnInit {
   showUserBoard = false;
   username: string;
   isLoggedIn = false;
+  socialUser: SocialUser;
 
-  constructor(public tokenStorageService: TokenStorageService, private socialAuthService: SocialAuthService) {
+  constructor(public tokenStorageService: TokenStorageService, private socialAuthService: SocialAuthService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    // this.isLoggedIn = !!this.tokenStorageService.getToken();
-    // if (this.isLoggedIn) {
+    // if (this.tokenStorageService.getToken()) {
+    //   this.isLoggedIn = true;
     //   this.role = this.tokenStorageService.getUserRole();
     //   this.username = this.tokenStorageService.getUser();
-    //   this.showAdminBoard = this.role === 'ROLE_ADMIN';
-    //   this.showUserBoard = this.role === 'ROLE_USER';
+    // }
+    // if (this.socialUser) {
+    //   this.socialAuthService.authState.subscribe((socialUser) => {
+    //     this.socialUser = socialUser;
+    //     this.isLoggedIn = true;
+    //   });
     // }
   }
 
   logout(): void {
     this.tokenStorageService.signOut();
-    this.socialAuthService.signOut();
-    this.isLoggedIn = false;
+    if (this.socialUser) {
+      this.socialAuthService.signOut();
+      this.isLoggedIn = false;
+      this.socialUser = null;
+    }
+    this.router.navigate(['/index']);
   }
-
 }

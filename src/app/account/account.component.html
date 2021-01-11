@@ -1,2 +1,105 @@
+<div class="container mx-auto pt-5 pb-5">
 
-<app-signin></app-signin>
+  <div *ngIf="user" class="card card-container mb-2">
+    <div class="card-header text-sm-center custom-blue">Σύνδεση</div>
+    <form
+      name="form" (ngSubmit)="f.form.valid && onEdit()" #f="ngForm" novalidate>
+      <!-- ονομα-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="name">Όνομα</label></div>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" name="name" [(ngModel)]="form.name"
+                 required #name="ngModel" minlength="3" id="name">{{user.name}}
+          <div class="alert-danger" *ngIf="f.submitted && name.invalid">
+            <div *ngIf="name.errors.required">Το όνομα είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="name.errors.minlength">Το όνομα πρέπει να αποτελείται τουλάχιστον από 3 γράμματα</div>
+          </div>
+        </div>
+      </div>
+      <!-- Επίθετο-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="lastname">Επίθετο</label></div>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" name="lastName" [(ngModel)]="form.lastName"
+                 required #lastName="ngModel" minlength="3" id="lastName"/>
+          <div class="alert-danger" *ngIf="f.submitted && lastName.invalid">
+            <div *ngIf="lastName.errors.required">Το επίθετο είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="lastName.errors.minlength">Το επίθετο πρέπει να αποτελείται τουλάχιστον από 3 γράμματα</div>
+          </div>
+        </div>
+      </div>
+      <!-- Τηλέφωνο-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="telephone">Τηλέφωνο</label></div>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" name="telephone" [(ngModel)]="form.telephone"
+                 required #telephone="ngModel" minlength="10" maxlength="10" id="telephone"/>
+          <div class="alert-danger" *ngIf="f.submitted && telephone.invalid">
+            <div *ngIf="telephone.errors.required">Το τηλέφωνο είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="telephone.errors.minlength">Το τηλέφωνο πρέπει να αποτελείται από 10 αριθμους</div>
+          </div>
+        </div>
+      </div>
+      <!-- username-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="username">username</label></div>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" name="username" [(ngModel)]="form.username"
+                 required #username="ngModel" minlength="3" maxlength="20" id="username"/>
+          <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.minlength">Το username πρέπει να αποτελείται τουλάχιστον από 3 γράμματα</div>
+            <div *ngIf="username.errors.maxlength">Το username πρέπει να περιέχει λιγότερο από 20 γράμματα</div>
+          </div>
+        </div>
+      </div>
+      <!-- email-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="email">email</label></div>
+        <div class="col-sm-7">
+          <input type="email" class="form-control" name="email" id="email"
+                 [(ngModel)]="form.email" required #email="ngModel"/>
+          <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required">Το Email είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="email.errors.email">Το Email δεν είναι έγκυρο</div>
+          </div>
+        </div>
+      </div>
+      <!-- εικόνα -->
+      <div class="row col-12 p-3 justify-content-around">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="image">Εικόνα</label></div>
+        <div class="col-sm-7">
+          <input type="file" id="image" (change)="onFileChanged($event)"></div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-info btn-block w-25 m-auto">Εγγραφή</button>
+      </div>
+
+
+
+    </form>
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Logged in as {{role}}.
+    </div>
+  </div>
+
+
+
+  <div *ngIf="socialUser" class="card text-center socialCard">
+    <img *ngIf="socialUser.photoUrl" class="card-img-top img-responsive photo" src="{{ socialUser.photoUrl }}">
+    <div class="card-block">
+      <h4 class="card-title">{{ socialUser.name }}</h4>
+      <p class="card-text">{{ socialUser.email }}</p>
+      <p class="card-text">{{ socialUser.idToken }}</p>
+      <p *ngIf="tokenStorage.getUserRole()" class="card-text">Δικαιώματα {{ tokenStorage.getUserRole() }}</p>
+      <p class="card-text">Σύνδεση με {{ socialUser.provider }}</p>
+    </div>
+  </div>
+
+</div>
+<!--</div>-->

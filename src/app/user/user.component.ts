@@ -9,17 +9,17 @@ import {UserService} from '../services/user.service';
 })
 export class UserComponent implements OnInit {
   user: User[];
-
-  getUser(): void {
-    this.userService.getUser().subscribe(user => (this.user = user));
-  }
+  //
+  // getUser(): void {
+  //   this.userService.getUser().subscribe(user => (this.user = user));
+  // }
 
   constructor(
     private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.getUser();
+   // this.getUser();
   }
 
 }

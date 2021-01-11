@@ -2,6 +2,7 @@ import {Injectable, Type} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../models/user';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 const baseUrl = 'http://localhost:8080/';
 const httpOptions: { headers; observe; } = {
@@ -34,14 +35,6 @@ export class AuthService {
 
   register(user): Observable<any> {
     return this.http.post<User>(baseUrl + 'register', {
-      // name: user.name,
-      // lastName: user.lastName,
-      // telephone: user.telephone,
-      // email: user.email,
-      // username: user.username,
-      // password: user.password,
-      // role: 'USER',
-      // image: user.image
       user
     }, {observe: 'response'});
   }
@@ -52,18 +45,19 @@ export class AuthService {
   }
 
 
-  // authenticate(username, password): Observable<any> {
-  //   return this.http.post<any>(baseUrl + 'login', {username, password}, httpOptions).pipe(
-  //     map(
-  //       userData => {
-  //         sessionStorage.setItem('username', username);
-  //         const tokenStr = 'Bearer ' + userData.token;
-  //         sessionStorage.setItem('token', tokenStr);
-  //         return userData;
-  //       }
-  //     )
-  //   );
-  // }
+  authenticate(email): Observable<any> {
+    return this.http.post(baseUrl + 'authenticate' + email, httpOptions);
+    //   .pipe(
+    //   map(
+    //     userData => {
+    //       sessionStorage.setItem('username', username);
+    //       const tokenStr = 'Bearer ' + userData.token;
+    //       sessionStorage.setItem('token', tokenStr);
+    //       return userData;
+    //     }
+    //   )
+    // );
+  }
 
 
   // isUserLoggedIn(): any {
@@ -71,7 +65,7 @@ export class AuthService {
   //   return !(user === null);
   // }
 
-  // logOut(): void {
-  //   sessionStorage.removeItem('username');
-  // }
+  logOut(): void {
+    sessionStorage.clear();
+  }
 }

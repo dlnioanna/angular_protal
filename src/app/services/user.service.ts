@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../models/user';
 import {Observable, of} from 'rxjs';
+import {Movie} from '../models/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,6 @@ import {Observable, of} from 'rxjs';
 
 export class UserService {
   baseUrl = 'http://localhost:8080/api/v1/';
-
-  getUser(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl + '/users');
-  }
 
   constructor(private http: HttpClient) {
   }
@@ -29,4 +26,11 @@ export class UserService {
     return this.http.get(this.baseUrl + 'admin', {responseType: 'text'});
   }
 
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'user/' + id);
+  }
+
+  getUserByUsername(username: string): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'username/' + username);
+  }
 }

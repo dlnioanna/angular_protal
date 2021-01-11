@@ -21,26 +21,24 @@ export class LoginComponent implements OnInit {
   role: string;
   headerToken: string;
   username: string;
-
   socialUser: SocialUser;
-  GoogleLoginProvider = GoogleLoginProvider;
   token: string;
-  formGroup: FormGroup;
-  faGoogle = faGoogle;
 
   constructor(private socialAuthService: SocialAuthService, private authService: AuthService,
-              private tokenStorage: TokenStorageService, private router: Router) {
+              public tokenStorage: TokenStorageService, private router: Router) {
   }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.role = this.tokenStorage.getUserRole();
-      this.username = this.tokenStorage.getUser();
-    }
-    // this.socialAuthService.authState.subscribe((socialUser) => {
-    //   this.socialUser = socialUser;
-    // });
+    // if (this.tokenStorage.getToken()) {
+    //   this.isLoggedIn = true;
+    //   this.role = this.tokenStorage.getUserRole();
+    //   this.username = this.tokenStorage.getUser();
+    // }
+    // if (this.socialUser) {
+    //   this.socialAuthService.authState.subscribe((socialUser) => {
+    //     this.socialUser = socialUser;
+    //   });
+    // }
   }
 
   onSubmit(): void {
@@ -86,13 +84,17 @@ export class LoginComponent implements OnInit {
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
         this.isLoggedIn = false;
-
       });
   }
 
-  signOut(): void {
-    this.socialAuthService.signOut();
-    this.tokenStorage.signOut();
-    this.isLoggedIn = false;
-  }
+  // signOut(): void {
+  //   if (this.socialUser) {
+  //     this.socialAuthService.signOut();
+  //     this.socialUser = null;
+  //   }
+  //   this.tokenStorage.signOut();
+  //   this.isLoggedIn = false;
+  //   this.router.navigate(['/index']);
+  //
+  // }
 }
