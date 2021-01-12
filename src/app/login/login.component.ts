@@ -29,16 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if (this.tokenStorage.getToken()) {
-    //   this.isLoggedIn = true;
-    //   this.role = this.tokenStorage.getUserRole();
-    //   this.username = this.tokenStorage.getUser();
-    // }
-    // if (this.socialUser) {
-    //   this.socialAuthService.authState.subscribe((socialUser) => {
-    //     this.socialUser = socialUser;
-    //   });
-    // }
   }
 
   onSubmit(): void {
@@ -74,11 +64,23 @@ export class LoginComponent implements OnInit {
         this.socialUser = socialUser;
         this.headerToken = this.socialUser.idToken;
         this.tokenStorage.saveToken(this.headerToken);
-        this.tokenStorage.saveUser(this.socialUser.firstName);
-        this.tokenStorage.saveUserRole('USER');
+        this.tokenStorage.saveUser(this.username);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.router.navigate(['/index']);
+        this.authService.authenticate(socialUser.email).subscribe(
+          response => {
+            this.headerToken = response.headers.get('Authorization').replace('Bearer', '');
+            const decodedToken = atob(this.headerToken.split('.')[1]);
+            const tokenJson = JSON.parse(decodedToken);
+            this.username = tokenJson.sub;
+            this.role = tokenJson.authorities[0].authority;
+            this.tokenStorage.saveToken(this.headerToken);
+            this.tokenStorage.saveUser(this.username);
+            this.tokenStorage.saveUserRole(this.role);
+            this.isLoginFailed = false;
+            this.isLoggedIn = true;
+            this.router.navigate(['/index']);
+          });
       },
       error => {
         this.errorMessage = error.error.message;

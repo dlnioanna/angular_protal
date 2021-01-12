@@ -9,10 +9,6 @@ const httpOptions: { headers; observe; } = {
   headers: new HttpHeaders({'Content-Type': 'application/json'}), observe: 'response'
 };
 
-const httpOptions2: { headers; observe; } = {
-  headers: new HttpHeaders({'Content-Type': 'multipart/form-data', boundary: '---boundary---'}), observe: 'response'
-};
-
 
 @Injectable({
   providedIn: 'root'
@@ -44,26 +40,9 @@ export class AuthService {
     localStorage.clear();
   }
 
-
   authenticate(email): Observable<any> {
-    return this.http.post(baseUrl + 'authenticate' + email, httpOptions);
-    //   .pipe(
-    //   map(
-    //     userData => {
-    //       sessionStorage.setItem('username', username);
-    //       const tokenStr = 'Bearer ' + userData.token;
-    //       sessionStorage.setItem('token', tokenStr);
-    //       return userData;
-    //     }
-    //   )
-    // );
+    return this.http.post(baseUrl + 'authenticate', {email}, {observe: 'response'});
   }
-
-
-  // isUserLoggedIn(): any {
-  //   const user = sessionStorage.getItem('username');
-  //   return !(user === null);
-  // }
 
   logOut(): void {
     sessionStorage.clear();
