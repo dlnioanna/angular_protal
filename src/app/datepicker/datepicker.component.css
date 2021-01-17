@@ -22,3 +22,23 @@
   color: #007bff;
 }
 
+::ng-deep.mat-form-field-ripple {
+  background-color: #007bff !important;;
+}
+
+::ng-deep.mat-focused .mat-form-field-label {
+  color: #021F59 !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  background-color: #021F59 !important;
+}
+
+::ng-deep.mat-form-field-label {
+  color: #021F59 !important;
+}
+
+::ng-deep.mat-datepicker-toggle {
+  color: #007bff !important;
+}
+

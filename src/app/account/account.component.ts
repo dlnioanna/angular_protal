@@ -14,7 +14,6 @@ import {User} from '../models/user';
 export class AccountComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
-  isLoginFailed = false;
   errorMessage = '';
   role: string;
   headerToken: string;

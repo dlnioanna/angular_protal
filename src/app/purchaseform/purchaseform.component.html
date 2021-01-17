@@ -1,4 +1,4 @@
-<div class="container-fluid mx-auto pt-5 pb-5">
+<div class="container-fluid mx-auto pt-5 pb-5" xmlns="http://www.w3.org/1999/html">
   <div class="card mx-auto my-3" style="width: 90%;">
     <h4 class="card-header text-center text-primary">Κράτηση Εισιτηρίων</h4>
     <div class="card-body justify-content-center small">
@@ -8,38 +8,55 @@
       <form name="purchaseForm" (ngSubmit)="f.form.valid && buyTickets()" #f="ngForm" novalidate>
         <div class="form-group row col-12 p-3 justify-content-center">
           <div class="col-4 text-center custom-blue">
-            <label for="numberOfTickets">Αριθμός εισιτηρίων</label></div>
+            <label for="numberOfTickets" class="text-center custom-light-blue py-2">Αριθμός εισιτηρίων</label></div>
           <div class="col-2">
             <input type="number" class="form-control" name="numberOfTickets" [(ngModel)]="form.numberOfTickets"
                    required #numberOfTickets="ngModel" id="numberOfTickets" min="1"
-                   max="{{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}" />
+                   max="{{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}" value="1"/>
             <div class="alert-danger" *ngIf="f.submitted && numberOfTickets.invalid">
               <div *ngIf="numberOfTickets.errors.min">Ο ελάχιστος αριθμός εισιτηριών για αγορά είναι 1.</div>
-              <div *ngIf="numberOfTickets.errors.max">Υπάρχουν {{movieShow.roomOfMovieShow.capacity-movieShow.showTickets.length}}
-              διαθέσιμα εισιτήρια.</div>
+              <div *ngIf="numberOfTickets.errors.max">
+                Υπάρχουν {{movieShow.roomOfMovieShow.capacity - movieShow.showTickets.length}}
+                διαθέσιμα εισιτήρια.
+              </div>
             </div>
           </div>
         </div>
 
-<div *ngIf="numberOfTickets.value>0">
-  <h6 class="custom-blue text-center">Πρόσκληση φίλων στην προβολή :</h6>
-  <div *ngFor="let ticket of numberOfTickets.value">
-    <div class="form-group row col-12 p-1 justify-content-around">
-      <div class="col-sm-1 text-sm-center custom-blue">
-        <label for="email">email</label></div>
-      <div class="col-sm-2">
-        <input type="email" class="form-control" name="email" id="email"
-               [(ngModel)]="form.email" #email="ngModel"/>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
+        <div *ngIf="numberOfTickets.value>0">
+          <h6 class="custom-blue text-center p-3">Πρόσκληση φίλων στην προβολή
+            <input type="checkbox" name="invitationCheckbox" id="invitationCheckbox" (click)="enableEmailList()"></h6>
+          <div class="form-group row col-12 justify-content-center" [hidden]="hidden"
+               id="addGuestEmails" *ngFor="let guest of guests; let i = index">
+            <div class="form-group row col-12 p-3 justify-content-center" id="guestEmail{{i}}">
+              <mat-form-field class="col-sm-3 justify-content-end offset-1">
+                <mat-label>Όνομα</mat-label>
+                <input type="email" matInput name="guestNameList" [(ngModel)]="form.guestNameList"
+                       required #guestNameList="ngModel">
+              </mat-form-field>
+              <mat-form-field class="col-sm-3 justify-content-center">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput name="guestEmailList" id="guestEmailList{{i}}"
+                       [(ngModel)]="this.form.guestEmailList" required #this.guestEmailList="ngModel">
+              </mat-form-field>
+              <div class="col-sm-1 justify-content-start">
+                <button class="btn btn-sm btn-outline-danger" type="button" (click)="removeGuest(i)"><i
+                  class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="form-group row p-1 text-center" [hidden]="hidden">
+              <button class="btn btn-sm btn-outline-primary" type="button"
+                      (click)="addGuest()">Προσθήκη email
+              </button>
+            </div>
+          </div>
+          <div class="col-sm-3 text-center m-auto">
+            <a class="btn btn-primary btn-sm m-2">{{hidden ? 'Κράτηση ' : 'Κράτηση και αποστολή email'}}</a>
+          </div>
+        </div>
       </form>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Renderer2, ElementRef} from '@angular/core';
 import {MovieShow} from '../models/movieShow';
 import {ActivatedRoute, Router, UrlSerializer} from '@angular/router';
 import {PurchaseService} from '../services/purchase.service';
@@ -19,6 +19,11 @@ export class PurchaseformComponent implements OnInit {
   isSuccessful = false;
   isBuyingFailed = false;
   errorMessage = '';
+  hidden = true;
+  guests = [1];
+  guestNameList: any[];
+  guestEmailList: any[];
+  counter = 1;
 
   constructor(private activatedRoute: ActivatedRoute, private purchaseformService: PurchaseformService) {
   }
@@ -35,7 +40,35 @@ export class PurchaseformComponent implements OnInit {
       movieShows => this.movieShow = movieShows);
   }
 
-  buyTickets(): void {
 
+  enableEmailList(): any {
+    this.hidden = !this.hidden;
+    if (this.hidden) {
+      while (this.guests.length > 0) {
+        this.guests.pop();
+      }
+    }
+    if (!this.hidden) {
+      const array = [1];
+      this.guests = array;
+    }
+
+    return;
+  }
+
+  addGuest(): void {
+    this.guests.push(++this.counter);
+  }
+
+  removeGuest(index): void {
+    console.log(index + ' to be removed');
+    this.guests.splice(index, 1);
+  }
+
+  buyTickets(): void {
+    while (this.counter > 0) {
+
+    }
+    this.purchaseformService.buyTickets();
   }
 }
