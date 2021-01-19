@@ -5,6 +5,7 @@ import {TokenStorageService} from '../services/token-storage.service';
 import {Router} from '@angular/router';
 import {UserService} from '../services/user.service';
 import {User} from '../models/user';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-account',
@@ -13,53 +14,59 @@ import {User} from '../models/user';
 })
 export class AccountComponent implements OnInit {
   form: any = {};
-  isLoggedIn = false;
+  isSuccessful = false;
+  isSignUpFailed = false;
   errorMessage = '';
-  role: string;
-  headerToken: string;
+  selectedFile: File;
+  isLoggedIn = false;
+  uploadNewImage = false;
   username: string;
   user: User;
   socialUser: SocialUser;
   token: string;
-  selectedFile: File;
 
   constructor(private socialAuthService: SocialAuthService, private authService: AuthService,
-              private tokenStorage: TokenStorageService, private userService: UserService) {
+              private tokenStorage: TokenStorageService, private userService: UserService,
+              private httpClient: HttpClient) {
   }
 
   ngOnInit(): void {
-    this.socialAuthService.authState.subscribe((socialUser) => {
-      this.socialUser = socialUser;
-    });
-    this.userService.getUserByUsername(this.username).subscribe(
-      user => {
-        this.user = user;
-      });
+    if (this.tokenStorage.getSocialUser()) {
+      this.socialUser = JSON.parse(this.tokenStorage.getSocialUser());
+    } else {
+      this.userService.getUserByUsername(this.tokenStorage.getUser()).subscribe(
+        user => {
+          this.user = user;
+        });
+    }
   }
 
 
   onEdit(): void {
-    // const uploadData = new FormData();
-    // if (this.selectedFile) {
-    //   uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
-    // }
-    // uploadData.append('name', this.form.name);
-    // uploadData.append('lastName', this.form.lastName);
-    // uploadData.append('telephone', this.form.telephone);
-    // uploadData.append('email', this.form.email);
-    // uploadData.append('username', this.form.username);
-    // uploadData.append('password', this.form.password);
-    // this.httpClient.post('http://localhost:8080/register', uploadData, {observe: 'response'})
-    //   .subscribe(
-    //     response => {
-    //       this.isSuccessful = true;
-    //       this.isSignUpFailed = false;
-    //     },
-    //     err => {
-    //       this.errorMessage = err.errorMessage;
-    //       this.isSignUpFailed = true;
-    //     }
-    //   );
+    const uploadData = new FormData();
+    if (this.uploadNewImage) {
+      uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    }
+    uploadData.append('id', this.user.id.toString());
+    uploadData.append('name', this.user.name);
+    uploadData.append('lastName', this.user.lastName);
+    uploadData.append('telephone', this.user.telephone.toString());
+    uploadData.append('password', this.user.password);
+    this.httpClient.post('http://localhost:8080/api/v1/updateUserData', uploadData, {observe: 'response'})
+      .subscribe(
+        response => {
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        err => {
+          this.errorMessage = err.errorMessage;
+          this.isSignUpFailed = true;
+        }
+      );
+    this.userService.getUserByUsername(this.tokenStorage.getUser()).subscribe(
+      user => {
+        this.user = user;
+      });
   }
 
 
@@ -70,6 +77,7 @@ export class AccountComponent implements OnInit {
   }
 
   public onFileChanged(event): void {
+    this.uploadNewImage = true;
     this.selectedFile = event.target.files[0];
   }
 }

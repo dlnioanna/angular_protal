@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../models/user';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Movie} from '../models/movie';
 
 const baseUrl = 'http://localhost:8080/';
 const httpOptions: { headers; observe; } = {
@@ -46,5 +47,13 @@ export class AuthService {
 
   logOut(): void {
     sessionStorage.clear();
+  }
+
+  getLoggedInUserByUsername(username: string): Observable<User> {
+    return this.http.get<User>(baseUrl + 'getLoggedInUserByUsername/' + username);
+  }
+
+  getLoggedInUser(email: string): Observable<User> {
+    return this.http.get<User>(baseUrl + 'getLoggedInUser/' + email);
   }
 }

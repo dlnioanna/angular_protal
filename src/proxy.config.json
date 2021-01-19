@@ -19,6 +19,11 @@
     "secure": false,
     "changeOrigin": true
   },
+  "/getLoggedInUserByUsername": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true
+  },
   "/imageUpload": {
     "target": "http://localhost:8080",
     "secure": false,

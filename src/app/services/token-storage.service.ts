@@ -4,6 +4,7 @@ import {User} from '../models/user';
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 const AUTHORITIES_KEY = 'auth-auth';
+const SOCIAL_KEY = 'social';
 
 @Injectable({
   providedIn: 'root'
@@ -44,4 +45,11 @@ export class TokenStorageService {
     return sessionStorage.getItem(AUTHORITIES_KEY);
   }
 
+  public setSocialUser(socialUser: any): void {
+    window.sessionStorage.setItem(SOCIAL_KEY, socialUser);
+  }
+
+  public getSocialUser(): any {
+    return sessionStorage.getItem(SOCIAL_KEY);
+  }
 }

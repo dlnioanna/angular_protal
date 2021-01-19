@@ -1,5 +1,125 @@
 <div class="container mx-auto pt-5 pb-5">
+  <div class="card card-container" *ngIf="!socialUser">
+    <div class="card-header text-sm-center custom-blue">Στοιχεία χρήστη</div>
+    <img *ngIf="user.image" class="card-img-top img-responsive photo" [src]="'data:image/jpeg;base64,'+user.image">
+    <form enctype="multipart/form-data"
+          name="form" (ngSubmit)="f.form.valid && onEdit()" #f="ngForm" novalidate>
+      <!-- username-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-4 text-sm-right custom-blue">
+          <label for="username">username</label></div>
+        <div class="col-sm-8">
+          <p class="custom-light-blue" name="username" id="username">{{user.username}}</p>
+        </div>
+      </div>
+      <!-- email-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-4 text-sm-right custom-blue">
+          <label for="email">email</label></div>
+        <div class="col-sm-8">
+          <p class="custom-light-blue" name="email" id="email">{{user.email}}</p>
+        </div>
+      </div>
+      <!-- password-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-4 text-sm-right custom-blue">
+          <label for="password">Password</label></div>
+        <div class="col-sm-8">
+          <input type="password" class="form-control" name="password" id="password"
+                 [(ngModel)]="user.password" required minlength="6" #password="ngModel">
+          <div class="alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">Το Password είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="password.errors.minlength">Το Password πρέπει να αποτελείται από τουλάχιστον 6 γράμματα</div>
+          </div>
+        </div>
+      </div>
+      <!-- ονομα-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-4 text-sm-right custom-blue">
+          <label for="name">Όνομα</label></div>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" name="name" [(ngModel)]="user.name"
+                 required #name="ngModel" minlength="3" id="name">
+          <div class="alert-danger" *ngIf="f.submitted && name.invalid">
+            <div *ngIf="name.errors.required">Το όνομα είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="name.errors.minlength">Το όνομα πρέπει να αποτελείται τουλάχιστον από 3 γράμματα</div>
+          </div>
+        </div>
+      </div>
+      <!-- Επίθετο-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-4 text-sm-right custom-blue">
+          <label for="lastname">Επίθετο</label></div>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" name="lastName" [(ngModel)]="user.lastName"
+                 required #lastName="ngModel" minlength="3" id="lastName"/>
+          <div class="alert-danger" *ngIf="f.submitted && lastName.invalid">
+            <div *ngIf="lastName.errors.required">Το επίθετο είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="lastName.errors.minlength">Το επίθετο πρέπει να αποτελείται τουλάχιστον από 3 γράμματα</div>
+          </div>
+        </div>
+      </div>
+      <!-- Τηλέφωνο-->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-4 text-sm-right custom-blue">
+          <label for="telephone">Τηλέφωνο</label></div>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" name="telephone" [(ngModel)]="user.telephone"
+                 required #telephone="ngModel" minlength="10" maxlength="10" id="telephone"/>
+          <div class="alert-danger" *ngIf="f.submitted && telephone.invalid">
+            <div *ngIf="telephone.errors.required">Το τηλέφωνο είναι απαραίτητο για να συνεχίσετε</div>
+            <div *ngIf="telephone.errors.minlength">Το τηλέφωνο πρέπει να αποτελείται από 10 αριθμους</div>
+          </div>
+        </div>
+      </div>
+      <!-- εικόνα -->
+      <div class="row col-12 p-3 justify-content-around">
+        <div class="col-sm-4 text-sm-right custom-blue">
+          <label for="image">Εικόνα</label></div>
+        <div class="col-sm-8">
+          <input type="file" id="image" (change)="onFileChanged($event)"></div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-info btn-block w-25 m-auto">Αποθήκευση αλλαγών</button>
+      </div>
+    </form>
+    <div class="alert alert-danger" *ngIf="isSignUpFailed">
+      Η επεξεργασία των στοιχείων σας απέτυχε! <br>{{errorMessage}}
+    </div>
+    <div class="alert alert-success" *ngIf="isSuccessful"> Η επεξεργασία των στοιχείων σας ήταν επιτυχής!</div>
+  </div>
+  <div class="card card-container" *ngIf="socialUser">
+    <div class="card-header text-sm-center custom-blue font-weight-bold">Συνδεση με {{socialUser.provider}}</div>
+    <img *ngIf="socialUser.photoUrl" class="card-img-top img-responsive photo" src="{{ socialUser.photoUrl}}">
+    <div class="card-body">
+      <!-- name-->
+      <div class="row col-12 p-2 m-auto">
+        <div class="col-sm-6 custom-blue text-right">
+          <label for="name" class="justify-content-sm-end">Όνομα</label></div>
+        <div class="col-sm-6 text-left">
+          <p class="custom-light-blue"
+             id="socialUserProvider">{{socialUser.name}}</p>
+        </div>
+      </div>
+      <!-- email-->
+      <div class="row col-12 p-2 m-auto">
+        <div class="col-sm-6 custom-blue text-right">
+          <label for="name" class="justify-content-sm-end">Email</label></div>
+        <div class="col-sm-6 text-left">
+          <p class="custom-light-blue"
+             id="socialUserMail">{{socialUser.email}}</p>
+        </div>
+      </div>
+      <!-- provider-->
+      <div class="row col-12 p-2 m-auto">
+        <div class="col-sm-6 custom-blue text-right">
+          <label for="name" class="justify-content-sm-end">Ρόλος</label></div>
+        <div class="col-sm-6 text-left">
+          <p class="custom-light-blue"
+             id="socialUserRole">{{tokenStorage.getUserRole()}}</p>
+        </div>
+      </div>
+    </div>
 
- {{username}}
-
+  </div>
 </div>

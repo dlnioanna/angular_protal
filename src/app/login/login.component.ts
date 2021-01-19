@@ -7,6 +7,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {faGoogle} from '@fortawesome/free-brands-svg-icons/faGoogle';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {User} from '../models/user';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   username: string;
   socialUser: SocialUser;
   token: string;
+  loggedInUser: User;
 
   constructor(private socialAuthService: SocialAuthService, private authService: AuthService,
               public tokenStorage: TokenStorageService, private router: Router) {
@@ -63,6 +65,7 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.authState.subscribe((socialUser) => {
         this.socialUser = socialUser;
         this.headerToken = this.socialUser.idToken;
+        this.tokenStorage.setSocialUser(JSON.stringify(this.socialUser));
         this.tokenStorage.saveToken(this.headerToken);
         this.tokenStorage.saveUser(this.username);
         this.isLoginFailed = false;
@@ -87,6 +90,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
         this.isLoggedIn = false;
       });
+
   }
 
   // signOut(): void {
