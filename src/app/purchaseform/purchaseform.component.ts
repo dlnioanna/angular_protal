@@ -61,7 +61,6 @@ export class PurchaseformComponent implements OnInit {
   }
 
   removeGuest(index): void {
-    console.log(index + ' to be removed');
     this.guests.splice(index, 1);
   }
 

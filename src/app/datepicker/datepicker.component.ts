@@ -17,7 +17,6 @@ export class DatepickerComponent {
   getDate(event: MatDatepickerInputEvent<unknown>): void {
     this.eventDateInput = `${event.value}`;
     this.formatDate(this.eventDateInput);
-    console.log(this.eventDateInput);
   }
 
   sendDate(): void {

@@ -46,6 +46,8 @@ export class AccountComponent implements OnInit {
     const uploadData = new FormData();
     if (this.uploadNewImage) {
       uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    } else {
+      uploadData.append('imageFile', this.user.image);
     }
     uploadData.append('id', this.user.id.toString());
     uploadData.append('name', this.user.name);

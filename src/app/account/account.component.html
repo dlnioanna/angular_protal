@@ -23,7 +23,7 @@
       <!-- password-->
       <div class="form-group row col-12 p-3 justify-content-around">
         <div class="col-sm-4 text-sm-right custom-blue">
-          <label for="password">Password</label></div>
+          <label for="password" class="pt-2 pb-2">Password</label></div>
         <div class="col-sm-8">
           <input type="password" class="form-control" name="password" id="password"
                  [(ngModel)]="user.password" required minlength="6" #password="ngModel">
@@ -36,7 +36,7 @@
       <!-- ονομα-->
       <div class="form-group row col-12 p-3 justify-content-around">
         <div class="col-sm-4 text-sm-right custom-blue">
-          <label for="name">Όνομα</label></div>
+          <label for="name" class="pt-2 pb-2">Όνομα</label></div>
         <div class="col-sm-8">
           <input type="text" class="form-control" name="name" [(ngModel)]="user.name"
                  required #name="ngModel" minlength="3" id="name">
@@ -49,7 +49,7 @@
       <!-- Επίθετο-->
       <div class="form-group row col-12 p-3 justify-content-around">
         <div class="col-sm-4 text-sm-right custom-blue">
-          <label for="lastname">Επίθετο</label></div>
+          <label for="lastname" class="pt-2 pb-2">Επίθετο</label></div>
         <div class="col-sm-8">
           <input type="text" class="form-control" name="lastName" [(ngModel)]="user.lastName"
                  required #lastName="ngModel" minlength="3" id="lastName"/>
@@ -62,7 +62,7 @@
       <!-- Τηλέφωνο-->
       <div class="form-group row col-12 p-3 justify-content-around">
         <div class="col-sm-4 text-sm-right custom-blue">
-          <label for="telephone">Τηλέφωνο</label></div>
+          <label for="telephone" class="pt-2 pb-2">Τηλέφωνο</label></div>
         <div class="col-sm-8">
           <input type="text" class="form-control" name="telephone" [(ngModel)]="user.telephone"
                  required #telephone="ngModel" minlength="10" maxlength="10" id="telephone"/>
@@ -75,7 +75,7 @@
       <!-- εικόνα -->
       <div class="row col-12 p-3 justify-content-around">
         <div class="col-sm-4 text-sm-right custom-blue">
-          <label for="image">Εικόνα</label></div>
+          <label for="image" class="pt-2 pb-2">Εικόνα</label></div>
         <div class="col-sm-8">
           <input type="file" id="image" (change)="onFileChanged($event)"></div>
       </div>

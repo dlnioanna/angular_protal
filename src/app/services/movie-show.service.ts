@@ -18,4 +18,19 @@ export class MovieShowService {
     return this.http.get<Movie[]>(this.baseUrl + 'movieshowsOnDate/' + date);
   }
 
+  getMovieShows(): Observable<MovieShow[]> {
+    return this.http.get<MovieShow[]>(this.baseUrl + 'movieshows');
+  }
+
+  getMovieShowById(id: number): Observable<MovieShow> {
+    return this.http.get<MovieShow>(this.baseUrl + 'movieshows/' + id);
+  }
+
+  moviesByMovieShowId(id: number): Observable<Movie> {
+    return this.http.get<Movie>(this.baseUrl + 'movies/movieshows/' + id);
+  }
+
+  getMoviesOrderByMovieShowId(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.baseUrl + 'moviesByMovieShowId');
+  }
 }

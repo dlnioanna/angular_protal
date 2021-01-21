@@ -28,7 +28,6 @@ export class ImageUploadComponent implements OnInit {
 
   // Gets called when the user clicks on submit to upload the image
   onUpload(): void {
-    console.log(this.selectedFile);
 
     // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
     const uploadImageData = new FormData();

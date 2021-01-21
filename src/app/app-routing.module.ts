@@ -15,12 +15,16 @@ import {ProfileComponent} from './profile/profile.component';
 import {BoardUserComponent} from './boarduser/board-user.component';
 import {BoardAdminComponent} from './boardadmin/board-admin.component';
 import {PurchaseformComponent} from './purchaseform/purchaseform.component';
+import {ManagementComponent} from './management/management.component';
+import {MovieShowEditComponent} from './movie-show-edit/movie-show-edit.component';
 
 const routes: Routes = [{path: 'index', component: IndexComponent},
   {path: 'users', component: UserComponent},
   {path: 'movies', component: MovieComponent},
   {path: 'account', component: AccountComponent},
   {path: 'movieShows', component: MovieShowComponent},
+  {path: 'movieShowEdit', component: MovieShowEditComponent},
+  {path: 'movieShowEdit/:movieId/:movieShowId', component: MovieShowEditComponent, pathMatch: 'full'},
   {path: 'imageUpload', component: ImageUploadComponent},
   {path: 'purchase', component: PurchaseComponent},
   {path: 'purchase/:id', component: PurchaseComponent},
@@ -31,7 +35,8 @@ const routes: Routes = [{path: 'index', component: IndexComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'user', component: BoardUserComponent},
-  {path: 'admin', component: BoardAdminComponent}];
+  {path: 'admin', component: BoardAdminComponent},
+  {path: 'management', component: ManagementComponent}];
 
 // {path: '**', redirectTo: 'index'}];
 

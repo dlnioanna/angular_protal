@@ -11,7 +11,6 @@ import {UserComponent} from './user/user.component';
 import {UserService} from './services/user.service';
 import {SocialLoginModule, SocialAuthServiceConfig} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
-import {SigninComponent} from './signin/signin.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {AccountComponent} from './account/account.component';
@@ -38,6 +37,8 @@ import { BoardUserComponent } from './boarduser/board-user.component';
 import { BoardAdminComponent } from './boardadmin/board-admin.component';
 import { PurchaseformComponent } from './purchaseform/purchaseform.component';
 import { AppInterceptor } from './services/appInterceptor';
+import { ManagementComponent } from './management/management.component';
+import { MovieShowEditComponent } from './movie-show-edit/movie-show-edit.component';
 
 
 @NgModule({
@@ -45,7 +46,6 @@ import { AppInterceptor } from './services/appInterceptor';
     AppComponent,
     IndexComponent,
     UserComponent,
-    SigninComponent,
     HeaderComponent,
     FooterComponent,
     AccountComponent,
@@ -62,6 +62,8 @@ import { AppInterceptor } from './services/appInterceptor';
     BoardUserComponent,
     BoardAdminComponent,
     PurchaseformComponent,
+    ManagementComponent,
+    MovieShowEditComponent,
   ],
   imports: [
     BrowserModule,

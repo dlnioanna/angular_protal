@@ -1,20 +1,3 @@
-.bg-transparent {
-  background-color: transparent;
-}
-
-:host {
-  height: 100%;
-}
-
-.photo {
-  object-fit: contain;
-}
-
-.card {
-  width: 15rem;
-  margin: 0 auto;
-  height: auto;
-}
 
 .custom-dark-blue { color: #010626; }
 .custom-blue { color: #021F59; }
@@ -22,4 +5,16 @@
 .custom-very-light-blue { color: #05DBF2; }
 .custom-grey { color: #BFAE99; }
 
+.card{
+  width: 70%;
+  height: 90%;
+  margin:auto;
+}
 
+.card-img-top{
+  width: 50%;
+  margin: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
