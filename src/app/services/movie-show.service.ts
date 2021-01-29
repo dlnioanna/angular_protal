@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {MovieShow} from '../models/movieShow';
 import {HttpClient} from '@angular/common/http';
 import {Movie} from '../models/movie';
+import {CalendarEvent} from 'angular-calendar';
 
 
 @Injectable({
@@ -20,6 +21,10 @@ export class MovieShowService {
 
   getMovieShows(): Observable<MovieShow[]> {
     return this.http.get<MovieShow[]>(this.baseUrl + 'movieshows');
+  }
+
+  getMovieShowsEvents(): Observable<CalendarEvent[]> {
+    return this.http.get<CalendarEvent[]>(this.baseUrl + 'movieshows/calendarEvents');
   }
 
   getMovieShowById(id: number): Observable<MovieShow> {

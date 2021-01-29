@@ -26,35 +26,82 @@
         <div *ngIf="numberOfTickets.value>0">
           <h6 class="custom-blue text-center p-3">Πρόσκληση φίλων στην προβολή
             <input type="checkbox" name="invitationCheckbox" id="invitationCheckbox" (click)="enableEmailList()"></h6>
-          <div class="form-group row col-12 justify-content-center" [hidden]="hidden"
-               id="addGuestEmails" *ngFor="let guest of guests; let i = index">
-            <div class="form-group row col-12 p-3 justify-content-center" id="guestEmail{{i}}">
-              <mat-form-field class="col-sm-3 justify-content-end offset-1">
-                <mat-label>Όνομα</mat-label>
-                <input type="email" matInput name="guestNameList" [(ngModel)]="form.guestNameList"
-                       required #guestNameList="ngModel">
-              </mat-form-field>
-              <mat-form-field class="col-sm-3 justify-content-center">
-                <mat-label>Email</mat-label>
-                <input type="email" matInput name="guestEmailList" id="guestEmailList{{i}}"
-                       [(ngModel)]="this.form.guestEmailList" required #this.guestEmailList="ngModel">
-              </mat-form-field>
-              <div class="col-sm-1 justify-content-start">
-                <button class="btn btn-sm btn-outline-danger" type="button" (click)="removeGuest(i)"><i
-                  class="fa fa-minus"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="form-group row p-1 text-center" [hidden]="hidden">
-              <button class="btn btn-sm btn-outline-primary" type="button"
-                      (click)="addGuest()">Προσθήκη email
-              </button>
-            </div>
-          </div>
+
+          <form class="form-horizontal" [formGroup]="formGroup" (ngSubmit)="onSubmit()" [hidden]="hidden">
+            <table class="m-auto w-50">
+              <tr class="form-group" formArrayName="products" *ngFor="let guests of formGroup.get('products').controls; let i = index">
+                <div [formGroupName]="i">
+                  <td>
+                    <input type="text" class="form-control" [id]="'guestName' + i" placeholder="Όνομα"  formControlName="guestName">
+                    <div *ngIf="guests.get('guestName').errors?.required &&
+                  guests.get('guestName').touched">
+                      Το όνομα ειναι απαραίτητο
+                    </div>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" [id]="'guestEmail' + i" placeholder="Email"  formControlName="guestEmail">
+                    <div *ngIf="guests.get('guestEmail').errors?.required &&
+                  guests.get('guestEmail').touched">
+                      Το email ειναι απαραίτητο
+                    </div>
+                  </td>
+                  <td>
+                      <button class="btn btn-sm btn-outline-danger" type="button" (click)="removeGuestButtonClick(i)">
+                          <i class="fa fa-minus"></i>
+                    </button>
+                  </td>
+                </div>
+              </tr>
+            </table>
+                      <div class="row justify-content-center">
+                        <div class="form-group row p-1 text-center" [hidden]="hidden">
+                          <button class="btn btn-sm btn-outline-primary" type="button"
+                                  (click)="addGuestButtonClick()">Προσθήκη email
+                          </button>
+                        </div>
+                      </div>
+            <input type="submit" value="Save"/>
+          </form>
+
+
+
+
+
+<!--          <div class="form-group row col-12 justify-content-center" [hidden]="hidden"-->
+<!--               id="addGuestEmails" *ngFor="let guest of guests; let i = index">-->
+<!--            <div class="form-group row col-12 p-3 justify-content-center" id="guestEmail{{i}}">-->
+<!--              <mat-form-field class="col-sm-3 justify-content-end offset-1">-->
+<!--                <mat-label>Όνομα</mat-label>-->
+<!--                <input type="email" matInput name="guestNameList" id="guestNameList{{i}}" >-->
+<!--              </mat-form-field>-->
+<!--              <mat-form-field class="col-sm-3 justify-content-center">-->
+<!--                <mat-label>Email</mat-label>-->
+<!--                <input type="email" matInput name="guestEmailList" id="guestEmailList{{i}}">-->
+<!--              </mat-form-field>-->
+<!--              <div class="col-sm-1 justify-content-start">-->
+<!--                <button class="btn btn-sm btn-outline-danger" type="button" (click)="removeGuest(i)"><i-->
+<!--                  class="fa fa-minus"></i>-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row justify-content-center">-->
+<!--            <div class="form-group row p-1 text-center" [hidden]="hidden">-->
+<!--              <button class="btn btn-sm btn-outline-primary" type="button"-->
+<!--                      (click)="addGuest()">Προσθήκη email-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
+
+
+
+
+
+
+
           <div class="col-sm-3 text-center m-auto">
-            <a class="btn btn-primary btn-sm m-2">{{hidden ? 'Κράτηση ' : 'Κράτηση και αποστολή email'}}</a>
+            <button type="submit" class="btn btn-primary btn-sm m-2 text-capitalize">
+              {{hidden ? 'Κράτηση ' : 'Κράτηση και αποστολή email'}}</button>
           </div>
         </div>
       </form>

@@ -4,6 +4,7 @@ import {ActivatedRoute, Router, UrlSerializer} from '@angular/router';
 import {PurchaseService} from '../services/purchase.service';
 import {PurchaseformService} from '../services/purchaseform.service';
 import {Movie} from '../models/movie';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-purchaseform',
@@ -20,12 +21,11 @@ export class PurchaseformComponent implements OnInit {
   isBuyingFailed = false;
   errorMessage = '';
   hidden = true;
-  guests = [1];
-  guestNameList: any[];
-  guestEmailList: any[];
   counter = 1;
+  formGroup: FormGroup;
 
-  constructor(private activatedRoute: ActivatedRoute, private purchaseformService: PurchaseformService) {
+  constructor(private activatedRoute: ActivatedRoute, private purchaseformService: PurchaseformService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -38,36 +38,40 @@ export class PurchaseformComponent implements OnInit {
       movie => this.movie = movie);
     this.purchaseformService.getMovieShowById(this.movieShowId).subscribe(
       movieShows => this.movieShow = movieShows);
+
+    this.formGroup = this.formBuilder.group({
+      products: this.formBuilder.array([this.addGuestFormGroup()])
+    });
   }
 
+  addGuestFormGroup(): FormGroup {
+    return this.formBuilder.group({
+      guestName: ['', Validators.required],
+      guestEmail: ['', Validators.required],
+    });
+  }
+
+  addGuestButtonClick(): void {
+    (this.formGroup.get('products') as FormArray).push(
+      this.addGuestFormGroup()
+    );
+  }
+  removeGuestButtonClick(i): void {
+    (this.formGroup.get('products') as FormArray).removeAt(i);
+  }
+
+  onSubmit(): void {
+    console.log(this.formGroup.value);
+    console.log(this.form.numberOfTickets);
+  }
 
   enableEmailList(): any {
     this.hidden = !this.hidden;
-    if (this.hidden) {
-      while (this.guests.length > 0) {
-        this.guests.pop();
-      }
-    }
-    if (!this.hidden) {
-      const array = [1];
-      this.guests = array;
-    }
-
     return;
   }
 
-  addGuest(): void {
-    this.guests.push(++this.counter);
-  }
-
-  removeGuest(index): void {
-    this.guests.splice(index, 1);
-  }
 
   buyTickets(): void {
-    while (this.counter > 0) {
-
-    }
-    this.purchaseformService.buyTickets();
+    console.log('button clicked');
   }
 }

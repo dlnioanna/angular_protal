@@ -39,6 +39,10 @@ import { PurchaseformComponent } from './purchaseform/purchaseform.component';
 import { AppInterceptor } from './services/appInterceptor';
 import { ManagementComponent } from './management/management.component';
 import { MovieShowEditComponent } from './movie-show-edit/movie-show-edit.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -64,6 +68,7 @@ import { MovieShowEditComponent } from './movie-show-edit/movie-show-edit.compon
     PurchaseformComponent,
     ManagementComponent,
     MovieShowEditComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +85,12 @@ import { MovieShowEditComponent } from './movie-show-edit/movie-show-edit.compon
     MatFormFieldModule,
     MaterialModule,
     BrowserAnimationsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    NgbModule
   ],
   entryComponents: [DatepickerComponent],
   providers: [UserService, authInterceptorProviders,

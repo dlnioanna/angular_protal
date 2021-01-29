@@ -1,0 +1,62 @@
+
+<div class="row col-12 text-center">
+  <div class="col-sm-4 m-auto">
+    <div class="btn-group btn-group-sm justify-content-around">
+      <div  class="btn btn-primary text-capitalize m-auto" mwlCalendarPreviousView [view]="view"
+        [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">Προηγ.</div>
+      <div class="btn btn-primary text-capitalize m-auto" mwlCalendarToday [(viewDate)]="viewDate"
+           [class.active]=activeDayIsOpen (click)="setActiveDay()">  Σήμερα </div>
+      <div class="btn btn-primary text-capitalize m-auto" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()">
+        Επόμ.</div>
+    </div>
+  </div>
+  <div class="col-sm-4 text-center m-auto">
+    <h5 class="m-auto">{{formatedDate}}</h5>
+  </div>
+  <div class="col-sm-4 m-auto">
+    <div class="btn-group btn-group-sm justify-content-around">
+      <div class="btn btn-primary text-capitalize  m-auto" (click)="setView(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month">Μήνας</div>
+      <div class="btn btn-primary text-capitalize  m-auto" (click)="setView(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week">Εβδομάδα</div>
+      <div class="btn btn-primary text-capitalize  m-auto" (click)="setView(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day">Ημέρα</div>
+    </div>
+  </div>
+</div>
+<br/>
+<ng-template #loading>
+  <div class="text-center">
+    <i class="fas fa-spin fa-spinner fa-5x"></i> <br />
+    Loading events...
+  </div>
+</ng-template>
+<!--<div *ngIf="events$ | async; let calEvents">-->
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="CalendarView.Month"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [activeDayIsOpen]="activeDayIsOpen"
+    (dayClicked)="dayClicked($event.day)"
+    (eventClicked)="handleEvent( $event.event)">
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="CalendarView.Week"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh  "
+    (eventClicked)="  handleEvent( $event.event)">
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="CalendarView.Day"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent( $event.event)">
+  </mwl-calendar-day-view>
+</div>
+<!--</div>-->
+
