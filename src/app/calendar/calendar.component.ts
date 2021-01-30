@@ -65,8 +65,6 @@ export class CalendarComponent implements OnInit {
   test: any[] = [];
   events: CalendarEvent[] = [];
 
-  events$: Observable<CalendarEvent<{ movieShow: MovieShow }>[]>;
-
   constructor(private movieShowService: MovieShowService, private router: Router, private http: HttpClient) {
   }
 
@@ -91,48 +89,28 @@ export class CalendarComponent implements OnInit {
     this.formatedDateForServer = `${inputDate.getFullYear()}-${(inputDate.getMonth() + 1).toString().padStart(2, '0')}-${inputDate.getDate().toString().padStart(2, '0')}`;
   }
 
-  getMovieShowsEvents(): void {
-    this.movieShowService.getMovieShowsEvents().subscribe(
-      data => (this.events = data));
-    this.movieShowService.getMovieShowsEvents().pipe(
-      map(data => data.map(value => this.convertEvent(value)))
-    ).subscribe();
+  getMovieShowsEvents(): Observable<CalendarEvent[]> {
+    // this.movieShowService.getMovieShowsEvents().subscribe(
+    //   data => (this.events = data));
+    return this.movieShowService.getMovieShowsEvents().pipe(
+      map(data => (data.map(value => this.convertEvent(value))))
+    );
   }
 
-  convertEvent(calEvent: CalendarEvent): any {
+  convertEvent(calEvent: CalendarEvent): CalendarEvent {
     let newEvent: CalendarEvent;
     newEvent = {
-      start: new Date(calEvent.start + getTimezoneOffsetString(this.viewDate)),
-      end: new Date(calEvent.end + getTimezoneOffsetString(this.viewDate)),
+      start: new Date(calEvent.start),
+      end: new Date(calEvent.end),
       title: calEvent.title,
       id: calEvent.id
     };
-    this.events.push(newEvent);
-  }
-
-  getMovieShows(): void {
-    this.movieShowService.getMovieShows().pipe(
-      map(data => data.map(show => this.convertMovieShowToCalendarEvent(show)
-      ))).subscribe();
-  }
-
-  convertMovieShowToCalendarEvent(movieShow: MovieShow): void {
-    let newEvent: CalendarEvent;
-    console.log('before initialization');
-    newEvent = {
-      start: new Date(movieShow.showDate),
-      end: new Date(movieShow.endTime),
-      title: 'movieShow.movieOfMovieShow.title',
-      id: 2
-    };
-    console.log('event ' + newEvent);
-    this.events.push(newEvent);
+    return newEvent;
   }
 
   ngOnInit(): void {
+    this.getMovieShowsEvents().subscribe(data => (this.events = data));
     this.formatDate(this.viewDate.toString());
-    this.getMovieShowsEvents();
-    // this.fetchEvents();
   }
 
   setView(view: CalendarView): void {
