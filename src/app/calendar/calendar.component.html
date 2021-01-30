@@ -1,7 +1,7 @@
 <div class="container-fluid mx-auto pt-5 pb-5">
 
-  <div class="row col-12 text-center">
-    <div class="col-sm-4 m-auto">
+  <div class="row col-sm-12 d-flex">
+    <div class="col-sm-4 d-flex">
       <div class="btn-group btn-group-sm justify-content-around">
         <div class="btn btn-primary text-capitalize m-auto" mwlCalendarPreviousView [view]="view"
              [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">Προηγ.
@@ -16,9 +16,9 @@
       </div>
     </div>
     <div class="col-sm-4 text-center m-auto">
-      <h5 class="m-auto">{{formatedDate}}</h5>
+      <h5 class="m-auto custom-blue">{{formatedDate}}</h5>
     </div>
-    <div class="col-sm-4 m-auto">
+    <div class="col-sm-4 d-flex">
       <div class="btn-group btn-group-sm justify-content-around">
         <div class="btn btn-primary text-capitalize  m-auto" (click)="setView(CalendarView.Month)"
              [class.active]="view === CalendarView.Month">Μήνας

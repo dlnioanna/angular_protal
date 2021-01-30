@@ -27,7 +27,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
-import {DatepickerComponent} from './datepicker/datepicker.component';
 import {MaterialModule} from './material/material.module';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { LoginComponent } from './login/login.component';
@@ -59,7 +58,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PurchaseComponent,
     TicketComponent,
     MovieShowComponent,
-    DatepickerComponent,
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
@@ -92,7 +90,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     }),
     NgbModule
   ],
-  entryComponents: [DatepickerComponent],
   providers: [UserService, authInterceptorProviders,
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},
@@ -111,7 +108,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         ]
       } as SocialAuthServiceConfig,
     }],
-  bootstrap: [AppComponent, DatepickerComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
