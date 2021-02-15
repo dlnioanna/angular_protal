@@ -15,4 +15,8 @@ export class RoomService {
     return this.http.get<Room[]>(this.baseUrl + 'rooms');
   }
 
+  getRoomByMovieShowId(id: number): Observable<MovieShow> {
+    return this.http.get<MovieShow>(this.baseUrl + 'movieshows/' + id);
+  }
+
 }

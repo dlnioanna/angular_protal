@@ -19,6 +19,7 @@ import {ManagementComponent} from './management/management.component';
 import {MovieShowEditComponent} from './movie-show-edit/movie-show-edit.component';
 
 const routes: Routes = [{path: 'index', component: IndexComponent},
+  {path: '', component: IndexComponent},
   {path: 'users', component: UserComponent},
   {path: 'movies', component: MovieComponent},
   {path: 'account', component: AccountComponent},
@@ -27,7 +28,7 @@ const routes: Routes = [{path: 'index', component: IndexComponent},
   {path: 'movieShowEdit/:movieId/:movieShowId', component: MovieShowEditComponent, pathMatch: 'full'},
   {path: 'imageUpload', component: ImageUploadComponent},
   {path: 'purchase', component: PurchaseComponent},
-  {path: 'purchase/:id', component: PurchaseComponent},
+  {path: 'purchase/:id', component: PurchaseComponent, pathMatch: 'full'},
   {path: 'purchaseform', component: PurchaseformComponent},
   {path: 'purchaseform/:movieId/:movieShowId', component: PurchaseformComponent, pathMatch: 'full'},
   {path: 'rooms', component: RoomComponent},

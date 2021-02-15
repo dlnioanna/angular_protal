@@ -42,6 +42,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -90,7 +91,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     }),
     NgbModule
   ],
-  providers: [UserService, authInterceptorProviders,
+  providers: [UserService, authInterceptorProviders,  {provide: LocationStrategy, useClass: HashLocationStrategy},
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},
     {provide: MAT_DATE_LOCALE, useValue: 'gr-GR'},

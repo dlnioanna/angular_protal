@@ -68,6 +68,7 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.setSocialUser(JSON.stringify(this.socialUser));
         this.tokenStorage.saveToken(this.headerToken);
         this.tokenStorage.saveUser(this.username);
+        this.tokenStorage.saveSocialUserEmail(this.socialUser.email);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.authService.authenticate(socialUser.email).subscribe(

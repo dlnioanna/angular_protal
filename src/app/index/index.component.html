@@ -1,7 +1,13 @@
 <div class="container-fluid mx-auto pt-5">
-  <h5>Εφαρμογή αγοράς εισιτηρίων</h5>
-  <img style="height: 70%; width:50%; position:absolute; top:0; left:0; right:0; bottom:0; margin:auto; "
-                                          src="assets/images/cinema_element.png"/>
+  <div *ngIf="!tokenStorageService.getUser(); else welcome_message">
+    <h5 class="text-center custom-light-blue pt-3">
+      Συνδεθείτε / εγγραφείτε για να κλείσετε τα εισιτήριά σας</h5>
+  </div>
+  <ng-template #welcome_message class="text-center custom-light-blue pt-3">
+    Κλείστε τα εισιτήριά σας για τις ταινίες που προβάλονται
+  </ng-template>
+
+  <img style="height: 70%; width:50%; position:absolute; top:0; left:0; right:0; bottom:0; margin:auto; " src="assets/images/cinema_element.png"/>
 </div>
 
 

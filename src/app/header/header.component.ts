@@ -21,19 +21,7 @@ export class HeaderComponent implements OnInit {
               private router: Router) {
   }
 
-  ngOnInit(): void {
-    // if (this.tokenStorageService.getToken()) {
-    //   this.isLoggedIn = true;
-    //   this.role = this.tokenStorageService.getUserRole();
-    //   this.username = this.tokenStorageService.getUser();
-    // }
-    // if (this.socialUser) {
-    //   this.socialAuthService.authState.subscribe((socialUser) => {
-    //     this.socialUser = socialUser;
-    //     this.isLoggedIn = true;
-    //   });
-    // }
-  }
+  ngOnInit(): void {}
 
   logout(): void {
     this.tokenStorageService.signOut();

@@ -4,10 +4,18 @@
     <img *ngIf="user.image" class="card-img-top img-responsive photo" [src]="'data:image/jpeg;base64,'+user.image">
     <form enctype="multipart/form-data"
           name="form" (ngSubmit)="f.form.valid && onEdit()" #f="ngForm" novalidate>
+      <!-- role -->
+      <div class="form-group row col-12 p-3 justify-content-around">
+        <div class="col-sm-4 text-sm-right custom-blue">
+          <label for="username">Role</label></div>
+        <div class="col-sm-8">
+          <p class="custom-light-blue" name="role" id="role">{{tokenStorage.getUserRole()}}</p>
+        </div>
+      </div>
       <!-- username-->
       <div class="form-group row col-12 p-3 justify-content-around">
         <div class="col-sm-4 text-sm-right custom-blue">
-          <label for="username">username</label></div>
+          <label for="username">Username</label></div>
         <div class="col-sm-8">
           <p class="custom-light-blue" name="username" id="username">{{user.username}}</p>
         </div>
@@ -15,7 +23,7 @@
       <!-- email-->
       <div class="form-group row col-12 p-3 justify-content-around">
         <div class="col-sm-4 text-sm-right custom-blue">
-          <label for="email">email</label></div>
+          <label for="email">Email</label></div>
         <div class="col-sm-8">
           <p class="custom-light-blue" name="email" id="email">{{user.email}}</p>
         </div>

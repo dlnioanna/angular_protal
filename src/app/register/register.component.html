@@ -1,6 +1,6 @@
 <div class="container mx-auto pt-5 pb-5">
   <div class="card card-container">
-    <div class="card-header text-sm-center custom-blue">Εγγραφή</div>
+    <div class="card-header text-center h4 text-primary">Εγγραφή</div>
     <form *ngIf="!isSuccessful" enctype="multipart/form-data"
           name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <!-- ονομα-->

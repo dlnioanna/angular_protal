@@ -5,6 +5,7 @@ const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 const AUTHORITIES_KEY = 'auth-auth';
 const SOCIAL_KEY = 'social';
+const SOCIAL_EMAIL = 'email';
 
 @Injectable({
   providedIn: 'root'
@@ -48,8 +49,14 @@ export class TokenStorageService {
   public setSocialUser(socialUser: any): void {
     window.sessionStorage.setItem(SOCIAL_KEY, socialUser);
   }
+  public saveSocialUserEmail(email: any): void {
+    window.sessionStorage.setItem(SOCIAL_EMAIL, email);
+  }
 
   public getSocialUser(): any {
     return sessionStorage.getItem(SOCIAL_KEY);
+  }
+  public getSocialUserEmail(): any {
+    return sessionStorage.getItem(SOCIAL_EMAIL);
   }
 }
