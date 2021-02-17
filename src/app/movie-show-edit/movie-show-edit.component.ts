@@ -25,10 +25,12 @@ export class MovieShowEditComponent implements OnInit {
   isSuccessful = false;
   updateFailed = false;
   errorMessage = '';
+  dt: any;
 
   constructor(private activatedRoute: ActivatedRoute, private movieService: MovieService,
               private movieShowService: MovieShowService, private httpClient: HttpClient,
               private roomService: RoomService) {
+    this.dt = new Date();
   }
 
   ngOnInit(): void {
@@ -42,8 +44,7 @@ export class MovieShowEditComponent implements OnInit {
     this.movieShowService.getMovieShowById(this.movieShowId).subscribe(
       movieShows => this.movieShow = movieShows);
     this.roomService.getRooms().subscribe(
-      rooms => this.showRoom = rooms  );
-
+      rooms => this.showRoom = rooms);
   }
 
   onEdit(): void {
@@ -54,12 +55,14 @@ export class MovieShowEditComponent implements OnInit {
       uploadMovieData.append('imageFile', this.movie.poster);
     }
     uploadMovieData.append('title', this.movie.title);
-    uploadMovieData.append('title', this.movie.title);
-    uploadMovieData.append('capacity', this.movie.title);
     uploadMovieData.append('movie_year', this.movie.movieYear.toString());
     uploadMovieData.append('rating', this.movie.rating.toString());
     uploadMovieData.append('description', this.movie.description);
     uploadMovieData.append('movieShowId', this.movie.movieShowsOfMovie[0].id.toString());
+    uploadMovieData.append('editedMovieId', this.movieId.toString());
+    uploadMovieData.append('capacity', this.movieShow.roomOfMovieShow.capacity.toString());
+    uploadMovieData.append('date', this.movieShow.showDate.toString());
+    uploadMovieData.append('time', this.movieShow.startTime.toString());
     console.log(uploadMovieData);
     this.httpClient.post('http://localhost:8080/api/v1/movies/save', uploadMovieData, {observe: 'response'})
       .subscribe(

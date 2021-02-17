@@ -22,8 +22,8 @@ export class PurchaseformComponent implements OnInit {
   isSuccessful = false;
   showTicketsError = false;
   errorMessage = '';
-  ticketsErrorMessage = '';
-  ticketsPurchaseMessage = 'Η κράτησή σας ολοκληρώθηκε. Ελέγξτε το email σας για την επιβεβαίωση κράτησης';
+  ticketsErrorMessage = 'Η κράτησή σας δεν ολοκληρώθηκε. Ελέγξτε τα στοιχεία κράτησης.';
+  ticketsPurchaseMessage = 'Η κράτησή σας ολοκληρώθηκε. Ελέγξτε το email σας για την επιβεβαίωση κράτησης.';
   hidden = true;
   counter = 1;
   formGroup: FormGroup;
@@ -84,10 +84,10 @@ export class PurchaseformComponent implements OnInit {
       uploadData.append('userName', this.tokenStorageService.getUser());
       uploadData.append('numberOfTickets', this.form.numberOfTickets);
       uploadData.append('guestList', JSON.stringify(this.formGroup.value));
-      uploadData.append('movieId', this.movieId);
       uploadData.append('movieShowId', this.movieShowId);
       if (this.tokenStorageService.getSocialUser()) {
         uploadData.append('socialUserEmail', this.tokenStorageService.getSocialUserEmail());
+        uploadData.append('socialUser', this.tokenStorageService.getSocialUser());
         uploadData.append('isSocialUser', '1');
       } else {
         uploadData.append('isSocialUser', '0');
@@ -102,6 +102,7 @@ export class PurchaseformComponent implements OnInit {
             this.showTicketsError = true;
             this.isSuccessful = false;
             this.errorMessage = err.errorMessage;
+            this.ticketsErrorMessage = 'Η κράτησή σας δεν ολοκληρώθηκε. Ελέγξτε τα στοιχεία κράτησης.';
           });
     }
   }
@@ -136,6 +137,7 @@ export class PurchaseformComponent implements OnInit {
           this.showTicketsError = false;
           this.isSuccessful = false;
           this.errorMessage = err.errorMessage;
+          this.ticketsErrorMessage = 'Η κράτησή σας δεν ολοκληρώθηκε. Ελέγξτε τα στοιχεία κράτησης.';
         });
 
   }

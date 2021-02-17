@@ -17,6 +17,7 @@ import {BoardAdminComponent} from './boardadmin/board-admin.component';
 import {PurchaseformComponent} from './purchaseform/purchaseform.component';
 import {ManagementComponent} from './management/management.component';
 import {MovieShowEditComponent} from './movie-show-edit/movie-show-edit.component';
+import {StatisticsComponent} from './statistics/statistics.component';
 
 const routes: Routes = [{path: 'index', component: IndexComponent},
   {path: '', component: IndexComponent},
@@ -37,7 +38,9 @@ const routes: Routes = [{path: 'index', component: IndexComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'user', component: BoardUserComponent},
   {path: 'admin', component: BoardAdminComponent},
-  {path: 'management', component: ManagementComponent}];
+  {path: 'management', component: ManagementComponent},
+  {path: 'statistics', component: StatisticsComponent}
+];
 
 // {path: '**', redirectTo: 'index'}];
 

@@ -68,7 +68,7 @@
           <button type="submit" class="btn btn-primary btn-sm m-2 text-capitalize">
             Κράτηση</button>
         </div>
-        <div class="alert-danger form-control" *ngIf="showTicketsError">
+        <div class="alert-danger form-control" *ngIf="showTicketsError && !isSuccessful">
           <div>{{ticketsErrorMessage}}</div>
         </div>
         <div class="alert-success form-control" *ngIf="isSuccessful">
