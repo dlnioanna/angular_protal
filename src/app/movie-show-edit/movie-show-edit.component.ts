@@ -30,7 +30,6 @@ export class MovieShowEditComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private movieService: MovieService,
               private movieShowService: MovieShowService, private httpClient: HttpClient,
               private roomService: RoomService) {
-    this.dt = new Date();
   }
 
   ngOnInit(): void {

@@ -13,20 +13,22 @@
       <li class="nav-item" *ngIf="tokenStorageService.getToken()">
         <a class="nav-link" routerLink="/movieShows">Προβολές</a>
       </li>
-      <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='ADMIN'||tokenStorageService.getUserRole()==='ADMIN_CS'">
-        <a class="nav-link" routerLink="/admin">admin</a>
+      <li class="nav-item"
+          *ngIf="tokenStorageService.getUserRole()==='ADMIN'||tokenStorageService.getUserRole()==='ADMIN_CS'">
+        <a class="nav-link" routerLink="/admin">Διαχείριση χρηστών</a>
       </li>
       <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='USER'">
-        <a class="nav-link" routerLink="/user">user</a>
+        <a class="nav-link" routerLink="/user">Κρατήσεις</a>
       </li>
-      <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='ADMIN'||tokenStorageService.getUserRole()==='ADMIN_CS'">
+      <li class="nav-item"
+          *ngIf="tokenStorageService.getUserRole()==='ADMIN'||tokenStorageService.getUserRole()==='ADMIN_CS'">
         <a class="nav-link" routerLink="/management">Διαχείριση Αιθουσών</a>
       </li>
       <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='ADMIN_CS'">
-        <a class="nav-link" routerLink="/management">Διαχείριση χρηστών</a>
-      </li>
-      <li class="nav-item" *ngIf="tokenStorageService.getUserRole()==='ADMIN_CS'">
         <a class="nav-link" routerLink="/statistics">Στατιστικά</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/checkIn">Ελεγχος εισιτηρίου</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/imageUpload">τεστ</a>

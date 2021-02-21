@@ -1,10 +1,30 @@
 <div class="container-fluid mx-auto pt-5 pb-5">
-  <div class="container container-fluid d-flex justify-content-center">
-    <div class="row justify-content-center col-12">
-      <div class="col-sm-4 text-lg-right m-auto pt-3">
-        <h5 class="custom-blue">Αναζήτηση χρήστη</h5>
+  <div class="card card-container w-50 m-auto">
+    <div class="card-header text-sm-center custom-blue font-weight-bold">Αναζήτηση χρήστη</div>
+    <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+      <!-- username-->
+      <div class="form-group row col-12 p-3 justify-content-around w-75 m-auto">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="username">username</label></div>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" name="username" [(ngModel)]="form.username"
+                  #username="ngModel" id="username"/>
+        </div>
       </div>
-διαχειριση ρολων υπολοιπων χρηστων
-    </div>
-  </div>
+      <!-- email-->
+      <div class="form-group row col-12 p-3 justify-content-around w-75 m-auto">
+        <div class="col-sm-5 text-sm-center custom-blue">
+          <label for="email">email</label></div>
+        <div class="col-sm-7">
+          <input type="email" class="form-control" name="email" id="email"
+                 [(ngModel)]="form.email" #email="ngModel"/>
+        </div>
+      </div>
+      <div class="form-group text-center m-3">
+        <button class="btn btn-primary btn-sm m-auto text-capitalize">Αναζήτηση</button>
+      </div>
+    </form>
+
+
+</div>
 </div>

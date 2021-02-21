@@ -44,6 +44,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { CheckInComponent } from './check-in/check-in.component';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
     MovieShowEditComponent,
     CalendarComponent,
     StatisticsComponent,
+    CheckInComponent,
   ],
   imports: [
     BrowserModule,

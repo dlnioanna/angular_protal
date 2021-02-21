@@ -29,11 +29,11 @@
         <div class="col-sm-4 text-sm-right custom-blue">
           <label for="dateTime" class="pt-2 pb-2">Προβολή</label></div>
         <div class="col-sm-4">
-          <input type="datetime-local" class="form-control" name="dateTime" id="dateTime"
+          <input type="text" class="form-control" name="dateTime" id="dateTime"
                  [ngModel]="movieShow.showDate | date:'dd/MM/yyyy'" required>
         </div>
         <div class="col-sm-4">
-          <input type="datetime-local" class="form-control" name="time" id="time"
+          <input type="text" class="form-control" name="time" id="time"
                  [ngModel]="movieShow.startTime| date:'hh:mm'" required>
         </div>
       </div>

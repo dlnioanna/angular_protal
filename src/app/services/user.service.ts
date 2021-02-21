@@ -4,33 +4,44 @@ import {User} from '../models/user';
 import {Observable, of} from 'rxjs';
 import {Movie} from '../models/movie';
 
+const baseUrl = 'http://localhost:8080/api/v1/';
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
-  baseUrl = 'http://localhost:8080/api/v1/';
 
   constructor(private http: HttpClient) {
   }
 
   getPublicContent(): Observable<any> {
-    return this.http.get(this.baseUrl + 'all', {responseType: 'text'});
+    return this.http.get(baseUrl + 'all', {responseType: 'text'});
   }
 
   getUserBoard(): Observable<any> {
-    return this.http.get(this.baseUrl + 'user', {responseType: 'text'});
+    return this.http.get(baseUrl + 'user', {responseType: 'text'});
   }
 
   getAdminBoard(): Observable<any> {
-    return this.http.get(this.baseUrl + 'admin', {responseType: 'text'});
+    return this.http.get(baseUrl + 'admin', {responseType: 'text'});
   }
 
   getUser(id: number): Observable<User> {
-    return this.http.get<User>(this.baseUrl + 'user/' + id);
+    return this.http.get<User>(baseUrl + 'user/' + id);
   }
 
   getUserByUsername(username: string): Observable<User> {
-    return this.http.get<User>(this.baseUrl + 'username/' + username);
+    return this.http.get<User>(baseUrl + 'username/' + username);
   }
+
+  getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(baseUrl + 'email/' + email);
+  }
+
+  getUserByUsernameOrEmail(user): Observable<any[]> {
+    console.log('username ' + user.username + ' email ' + user.email);
+    return this.http.get<User[]>(baseUrl + 'getUser/' + user.username + '/' + user.email);
+  }
+
 }

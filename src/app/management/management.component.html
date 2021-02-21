@@ -9,7 +9,7 @@
             <h6 class="card-subtitle mb-2 text-muted">{{movies[i].movieShowsOfMovie[0].showDate |date:'dd/MM/yyyy'}}
              - {{movies[i].movieShowsOfMovie[0].startTime |date:'hh:mm'}}</h6>
             <p class="card-text">Χωρητικότητα : {{movies[i].movieShowsOfMovie[0].roomOfMovieShow.capacity}}</p>
-            <p class="card-text">Κρατήσεις {{movies[i].movieShowsOfMovie[0].showTickets.length}}: </p>
+            <p class="card-text">Κρατήσεις : {{movies[i].movieShowsOfMovie[0].showTickets.length}} </p>
             <p class="card-text">Διαθέσιμες θέσεις : {{movies[i].movieShowsOfMovie[0].roomOfMovieShow.capacity-movies[i].movieShowsOfMovie[0].showTickets.length}}</p>
             <a class="card-link text-capitalize text-primary" [routerLink]="['/movieShowEdit']"
                [queryParams]="{'movieId' :movies[i].id, 'movieShowId': movies[i].movieShowsOfMovie[0].id}">Επεξεργασία</a>
@@ -23,7 +23,7 @@
             <h6 class="card-subtitle mb-2 text-muted">{{movies[i+1].movieShowsOfMovie[0].showDate |date:'dd/MM/yyyy'}}
               - {{movies[i+1].movieShowsOfMovie[0].startTime |date:'hh:mm'}}</h6>
             <p class="card-text">Χωρητικότητα : {{movies[i+1].movieShowsOfMovie[0].roomOfMovieShow.capacity}}</p>
-            <p class="card-text">Κρατήσεις {{movies[i+1].movieShowsOfMovie[0].showTickets.length}}: </p>
+            <p class="card-text">Κρατήσεις : {{movies[i+1].movieShowsOfMovie[0].showTickets.length}}  </p>
             <p class="card-text">Διαθέσιμες θέσεις : {{movies[i+1].movieShowsOfMovie[0].roomOfMovieShow.capacity-movies[i+1].movieShowsOfMovie[0].showTickets.length}}</p>
             <a class="card-link text-capitalize text-primary" [routerLink]="['/movieShowEdit']"
                [queryParams]="{'movieId' :movies[i+1].id, 'movieShowId': movies[i+1].movieShowsOfMovie[0].id}">Επεξεργασία</a>
@@ -37,7 +37,7 @@
             <h6 class="card-subtitle mb-2 text-muted">{{movies[i+2].movieShowsOfMovie[0].showDate |date:'dd/MM/yyyy'}}
               - {{movies[i+2].movieShowsOfMovie[0].startTime |date:'hh:mm'}}</h6>
             <p class="card-text">Χωρητικότητα : {{movies[i+2].movieShowsOfMovie[0].roomOfMovieShow.capacity}}</p>
-            <p class="card-text">Κρατήσεις {{movies[i+2].movieShowsOfMovie[0].showTickets.length}}: </p>
+            <p class="card-text">Κρατήσεις : {{movies[i+2].movieShowsOfMovie[0].showTickets.length}} </p>
             <p class="card-text">Διαθέσιμες θέσεις : {{movies[i+2].movieShowsOfMovie[0].roomOfMovieShow.capacity-movies[i+2].movieShowsOfMovie[0].showTickets.length}}</p>
             <a class="card-link text-capitalize text-primary" [routerLink]="['/movieShowEdit']"
                [queryParams]="{'movieId' :movies[i+2].id, 'movieShowId': movies[i+2].movieShowsOfMovie[0].id}">Επεξεργασία</a>
@@ -51,7 +51,7 @@
           <h6 class="card-subtitle mb-2 text-muted">{{movies[i+3].movieShowsOfMovie[0].showDate |date:'dd/MM/yyyy'}}
             - {{movies[i+3].movieShowsOfMovie[0].startTime |date:'hh:mm'}}</h6>
           <p class="card-text">Χωρητικότητα : {{movies[i+3].movieShowsOfMovie[0].roomOfMovieShow.capacity}}</p>
-          <p class="card-text">Κρατήσεις {{movies[i+3].movieShowsOfMovie[0].showTickets.length}}: </p>
+          <p class="card-text">Κρατήσεις : {{movies[i+3].movieShowsOfMovie[0].showTickets.length}}  </p>
           <p class="card-text">Διαθέσιμες θέσεις : {{movies[i+3].movieShowsOfMovie[0].roomOfMovieShow.capacity-movies[i+3].movieShowsOfMovie[0].showTickets.length}}</p>
           <a class="card-link text-capitalize text-primary" [routerLink]="['/movieShowEdit']"
              [queryParams]="{'movieId' :movies[i+3].id, 'movieShowId': movies[i+3].movieShowsOfMovie[0].id}">Επεξεργασία</a>
@@ -60,4 +60,4 @@
     </div>
   </div>
 </div>
-
+</div>
