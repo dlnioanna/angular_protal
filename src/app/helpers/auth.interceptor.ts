@@ -16,6 +16,20 @@ export class AuthInterceptor implements HttpInterceptor {
       authReq = req.clone({headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer' + token)});
     }
     return next.handle(authReq);
+    // για να εμφανίζει τα μηνύματα από το Response Entity του backend
+    // return new Observable(observer => {
+    //   const subscription = next.handle(authReq)
+    //     .subscribe(
+    //       event => {
+    //         observer.next(event);
+    //       },
+    //       err => {
+    //         observer.error(err);
+    //       },
+    //       () => {
+    //         observer.complete();
+    //       });
+    // });
   }
 }
 

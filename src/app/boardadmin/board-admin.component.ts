@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {User} from '../models/user';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-boardadmin',
@@ -10,22 +11,26 @@ import {User} from '../models/user';
 export class BoardAdminComponent implements OnInit {
   content = '';
   form: any = {};
-  user: any;
-  users: User[];
+  users: any[];
   userName: string;
   email: string;
 
-  constructor(private userservice: UserService) {
+  constructor(private userService: UserService, private httpClient: HttpClient) {
   }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    this.userName = this.form.username.trim();
-    this.email = this.form.email.trim();
-    this.userservice.getUserByUsernameOrEmail(this.form).subscribe(
-      data => (this.user = data));
+    const uploadData = new FormData();
+    uploadData.append('email', this.form.email);
+    uploadData.append('username', this.form.username);
+    this.httpClient.post<any[]>('http://localhost:8080/api/v1/getUsers', uploadData)
+      .subscribe(
+        response => {
+          this.users = response;
+        });
+    console.log('users are ' + this.users.length);
   }
 
 }

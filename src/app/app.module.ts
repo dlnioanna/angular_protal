@@ -45,6 +45,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { CheckInComponent } from './check-in/check-in.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { CheckInComponent } from './check-in/check-in.component';
     CalendarComponent,
     StatisticsComponent,
     CheckInComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

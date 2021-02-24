@@ -27,7 +27,7 @@ export class UserService {
     return this.http.get(baseUrl + 'admin', {responseType: 'text'});
   }
 
-  getUser(id: number): Observable<User> {
+  getUserById(id: number): Observable<User> {
     return this.http.get<User>(baseUrl + 'user/' + id);
   }
 

@@ -18,21 +18,21 @@ export class MovieShowComponent implements OnInit {
   showDateForServer: number;
   message: string;
 
-  getMovieShowsOnDate(showDateForServer): void {
-    this.movieShowService.getMovieShowsOnDate(showDateForServer).subscribe(
-      movies => (this.movies = movies));
-    if (this.movies.length > 0) {
-      this.message = 'Ταινίες που προβάλονται την ' + this.showDate + ' :';
-    } else {
-      this.message = 'Δεν προβάλονται ταινίες την ' + this.showDate + '.';
-    }
-  }
+  // getMovieShowsOnDate(showDateForServer): void {
+  //   this.movieShowService.getMovieShowsOnDate(showDateForServer).subscribe(
+  //     movies => (this.movies = movies));
+  //   if (this.movies.length > 0) {
+  //     this.message = 'Ταινίες που προβάλονται την ' + this.showDate + ' :';
+  //   } else {
+  //     this.message = 'Δεν προβάλονται ταινίες την ' + this.showDate + '.';
+  //   }
+  // }
 
-  receiveDate($event): void {
-    this.showDate = $event.dateForHtml;
-    this.showDateForServer = $event.dateForServer;
-    this.getMovieShowsOnDate(this.showDateForServer);
-  }
+  // receiveDate($event): void {
+  //   this.showDate = $event.dateForHtml;
+  //   this.showDateForServer = $event.dateForServer;
+  //   this.getMovieShowsOnDate(this.showDateForServer);
+  // }
 
   constructor(private movieShowService: MovieShowService) {
   }

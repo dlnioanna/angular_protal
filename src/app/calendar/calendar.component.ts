@@ -80,13 +80,15 @@ export class CalendarComponent implements OnInit {
 
   convertEvent(calEvent: CalendarEvent): CalendarEvent {
     let newEvent: CalendarEvent;
+    console.log('title is ' + calEvent.title + 'color is ' + calEvent.color);
     newEvent = {
       start: new Date(calEvent.start),
       end: new Date(calEvent.end),
       title: calEvent.title,
       id: calEvent.id,
       color: calEvent.color
-    };
+  }
+    ;
     return newEvent;
   }
 

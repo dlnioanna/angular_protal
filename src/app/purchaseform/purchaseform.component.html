@@ -71,6 +71,9 @@
         <div class="alert-danger form-control" *ngIf="showTicketsError && !isSuccessful">
           <div>{{ticketsErrorMessage}}</div>
         </div>
+        <div class="alert-danger form-control" *ngIf="showTicketsError && !isSuccessful">
+          <div>{{errorMessage}}</div>
+        </div>
         <div class="alert-success form-control" *ngIf="isSuccessful">
           <div>{{ticketsPurchaseMessage}}</div>
         </div>
@@ -78,3 +81,4 @@
     </div>
   </div>
 </div>
+

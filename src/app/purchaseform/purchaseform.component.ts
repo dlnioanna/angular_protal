@@ -21,7 +21,7 @@ export class PurchaseformComponent implements OnInit {
   form: any = {};
   isSuccessful = false;
   showTicketsError = false;
-  errorMessage = '';
+  errorMessage: any;
   ticketsErrorMessage = 'Η κράτησή σας δεν ολοκληρώθηκε. Ελέγξτε τα στοιχεία κράτησης.';
   ticketsPurchaseMessage = 'Η κράτησή σας ολοκληρώθηκε. Ελέγξτε το email σας για την επιβεβαίωση κράτησης.';
   hidden = true;
@@ -97,11 +97,12 @@ export class PurchaseformComponent implements OnInit {
         .subscribe(response => {
             this.isSuccessful = true;
             this.showTicketsError = false;
+            this.errorMessage = response;
           },
           err => {
             this.showTicketsError = true;
             this.isSuccessful = false;
-            this.errorMessage = err.errorMessage;
+            this.errorMessage = err.error;
             this.ticketsErrorMessage = 'Η κράτησή σας δεν ολοκληρώθηκε. Ελέγξτε τα στοιχεία κράτησης.';
           });
     }
@@ -132,11 +133,12 @@ export class PurchaseformComponent implements OnInit {
       .subscribe(response => {
           this.isSuccessful = true;
           this.showTicketsError = false;
+          this.errorMessage = response;
         },
         err => {
-          this.showTicketsError = false;
+          this.showTicketsError = true;
           this.isSuccessful = false;
-          this.errorMessage = err.errorMessage;
+          this.errorMessage = err.error;
           this.ticketsErrorMessage = 'Η κράτησή σας δεν ολοκληρώθηκε. Ελέγξτε τα στοιχεία κράτησης.';
         });
 

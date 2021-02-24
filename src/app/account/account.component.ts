@@ -61,7 +61,7 @@ export class AccountComponent implements OnInit {
           this.isSignUpFailed = false;
         },
         err => {
-          this.errorMessage = err.errorMessage;
+          this.errorMessage = err.error;
           this.isSignUpFailed = true;
         }
       );

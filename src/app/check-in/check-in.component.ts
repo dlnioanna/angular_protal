@@ -24,9 +24,18 @@ export class CheckInComponent implements OnInit {
         this.errorMessage = null;
       },
       err => {
-        this.errorMessage = 'Το εισιτήριό σας δεν βρέθηκε. Ελέγξτε τον αριθμό εισιτηρίου.';
+        this.errorMessage = err.error;
         this.successMessage = null;
       }
     );
   }
+
+  // checkTicket(): void {
+  //   this.ticketService.checkTicket(this.form.ticketNumber).subscribe(
+  //     data => {
+  //       this.ticket = data;
+  //     }
+  //   );
+  //   console.log('ticket is ' + this.ticket.id);
+  // }
 }

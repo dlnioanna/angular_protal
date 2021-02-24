@@ -36,10 +36,10 @@
     </ul>
 
     <div *ngIf="!tokenStorageService.getToken()" class="nav-item">
-      <a class="nav-link" routerLink="/register">register</a>
+      <a class="nav-link" routerLink="/register">Εγγραφή</a>
     </div>
     <div *ngIf="!tokenStorageService.getToken()" class="nav-item">
-      <a class="nav-link" routerLink="/login">login</a>
+      <a class="nav-link" routerLink="/login">Σύνδεση</a>
     </div>
     <div *ngIf="tokenStorageService.getToken()">
       <a class="nav-link font-weight-bold" routerLink="/account">{{tokenStorageService.getUser()}}</a>

@@ -19,6 +19,7 @@ import {ManagementComponent} from './management/management.component';
 import {MovieShowEditComponent} from './movie-show-edit/movie-show-edit.component';
 import {StatisticsComponent} from './statistics/statistics.component';
 import {CheckInComponent} from './check-in/check-in.component';
+import {EditUserComponent} from './edit-user/edit-user.component';
 
 const routes: Routes = [{path: 'index', component: IndexComponent},
   {path: '', component: IndexComponent},
@@ -41,7 +42,9 @@ const routes: Routes = [{path: 'index', component: IndexComponent},
   {path: 'admin', component: BoardAdminComponent},
   {path: 'management', component: ManagementComponent},
   {path: 'statistics', component: StatisticsComponent},
-  {path: 'checkIn', component: CheckInComponent}
+  {path: 'checkIn', component: CheckInComponent},
+  {path: 'edituser', component: EditUserComponent},
+  {path: 'edituser/:userId', component: EditUserComponent, pathMatch: 'full'}
 ];
 
 // {path: '**', redirectTo: 'index'}];

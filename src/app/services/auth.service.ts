@@ -19,10 +19,6 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  // loginForm(email: string, password: string): Observable<any> {
-  //   return this.http.post<User>(baseUrl + 'login', {email, password});
-  // }
-
   login(credentials): Observable<any> {
     return this.http.post(baseUrl + 'login', {
       username: credentials.username,
@@ -49,11 +45,4 @@ export class AuthService {
     sessionStorage.clear();
   }
 
-  getLoggedInUserByUsername(username: string): Observable<User> {
-    return this.http.get<User>(baseUrl + 'getLoggedInUserByUsername/' + username);
-  }
-
-  getLoggedInUser(email: string): Observable<User> {
-    return this.http.get<User>(baseUrl + 'getLoggedInUser/' + email);
-  }
 }
