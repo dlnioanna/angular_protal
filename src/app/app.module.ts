@@ -18,8 +18,6 @@ import {MatCardModule} from '@angular/material/card';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {MovieComponent} from './movie/movie.component';
-import {ImageUploadComponent} from './image-upload/image-upload.component';
-import {RoomComponent} from './room/room.component';
 import {PurchaseComponent} from './purchase/purchase.component';
 import {TicketComponent} from './ticket/ticket.component';
 import {MovieShowComponent} from './movie-show/movie-show.component';
@@ -46,6 +44,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { CheckInComponent } from './check-in/check-in.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { AttendantsComponent } from './attendants/attendants.component';
 
 
 @NgModule({
@@ -57,8 +56,6 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     FooterComponent,
     AccountComponent,
     MovieComponent,
-    ImageUploadComponent,
-    RoomComponent,
     PurchaseComponent,
     TicketComponent,
     MovieShowComponent,
@@ -74,6 +71,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     StatisticsComponent,
     CheckInComponent,
     EditUserComponent,
+    AttendantsComponent,
   ],
   imports: [
     BrowserModule,

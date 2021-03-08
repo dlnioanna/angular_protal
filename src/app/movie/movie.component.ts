@@ -14,7 +14,6 @@ export class MovieComponent implements OnInit {
   movies: Movie[];
   movie: Movie;
   private id: number;
-  room: Room;
   movieShow: MovieShow[];
   movieId: number;
 

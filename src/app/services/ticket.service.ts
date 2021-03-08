@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {User} from '../models/user';
-import {Ticket} from '../models/ticket';
+import {map} from 'rxjs/operators';
+
 
 
 const baseUrl = 'http://localhost:8080/api/v1/';
@@ -18,11 +18,13 @@ export class TicketService {
   constructor(private http: HttpClient) {
   }
 
-  checkIn(ticketNumber: number): any {
-    return this.http.put(baseUrl + 'ticketCheck/' + ticketNumber, {observe: 'response'});
+  checkIn(ticketNumber: number): Observable<any> {
+    return this.http.post(baseUrl + 'ticketCheck/' + ticketNumber, httpOptions).pipe(
+      map(
+      (response: Response) => {
+        console.log(response.json());
+        return response.json();
+      }));
   }
 
-  checkTicket(ticketNumber: number): Observable<any> {
-    return this.http.get(baseUrl + 'checkTicket/' + ticketNumber);
-  }
 }

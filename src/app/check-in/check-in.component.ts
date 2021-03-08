@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TicketService} from '../services/ticket.service';
+import {Ticket} from '../models/ticket';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-check-in',
@@ -8,10 +10,12 @@ import {TicketService} from '../services/ticket.service';
 })
 export class CheckInComponent implements OnInit {
   form: any = {};
-  successMessage: string;
-  errorMessage: string;
+  successMessage: any;
+  errorMessage: any;
 
-  constructor(private ticketService: TicketService) {
+  ticket: Ticket;
+
+  constructor(private ticketService: TicketService, private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -19,23 +23,13 @@ export class CheckInComponent implements OnInit {
 
   checkIn(): void {
     this.ticketService.checkIn(this.form.ticketNumber).subscribe(
-      response => {
-        this.successMessage = 'Το εισιτήριο σας είναι καταχωρίθηκε. Καλή διασκέδαση!';
-        this.errorMessage = null;
+      data => {
+        this.successMessage = data.json();
       },
       err => {
         this.errorMessage = err.error;
-        this.successMessage = null;
-      }
-    );
+      }  );
+    console.log(' success is ' + this.successMessage + ' error is ' + this.errorMessage);
   }
 
-  // checkTicket(): void {
-  //   this.ticketService.checkTicket(this.form.ticketNumber).subscribe(
-  //     data => {
-  //       this.ticket = data;
-  //     }
-  //   );
-  //   console.log('ticket is ' + this.ticket.id);
-  // }
 }

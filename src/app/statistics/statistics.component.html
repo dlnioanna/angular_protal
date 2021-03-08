@@ -1,21 +1,33 @@
 <div class="container-fluid mx-auto pt-5 pb-5">
   <div class="container container-fluid d-flex justify-content-center">
     <div class="row justify-content-center col-12">
-      <div class="col-sm-4 text-lg-right m-auto pt-3">
-        <h5 class="custom-blue">Στατιστικά χρήσης εφαρμογής</h5>
+      <div class="col-sm-4 text-lg-right m-auto p-3">
+        <h5 class="custom-blue text-center">Στατιστικά εισιτηρίων</h5>
       </div>
     </div>
   </div>
-
-  <div class="container container-fluid d-flex justify-content-center">
-    <div class="row justify-content-center col-12">
-     Σύνολο διετιθέμενων εισιτηρίων - εμφάνιση όσω εχουν κοπει
+  <div *ngFor="let movieShow of movieShows" class="pb-5">
+    <h6 class="text-center text-capitalize custom-light-blue"> {{movieShow.movieOfMovieShow.title}}</h6>
+    <div class="row col-sm-12 mx-auto justify-content-center">
+      <div class="col-sm-2 text-center">
+        {{movieShow.roomOfMovieShow.name}}
+      </div>
+      <div class="col-sm-2 text-center">
+        {{movieShow.movieOfMovieShow.title}}
+      </div>
+      <div class="col-sm-2 text-center">
+        {{movieShow.showDate | date:'dd/MM/yyyy'}} <br> {{movieShow.startTime| date:'hh:mm'}}
+      </div>
+      <div class="col-sm-2 text-center">
+        Σύνολο θέσεων : {{movieShow.roomOfMovieShow.capacity}}
+        <br>
+        Αδιάθετα εισιτήρια : {{movieShow.roomOfMovieShow.capacity - movieShow.showTickets.length}}
+        <br>
+        Διατιθέμενα εισιτήρια : {{movieShow.showTickets.length}}
+      </div>
+      <div class="col-sm-2 text-center nav-link">
+          <a [routerLink]="['/attendants']" [queryParams]="{movieShowId :movieShow.id}">Προβολή παρευρισκομένων</a></div>
     </div>
   </div>
 
-  <div class="container container-fluid d-flex justify-content-center">
-    <div class="row justify-content-center col-12">
-     Σύνολο χρησιμοποιημενων εισιτηριων - εμφάνιση όσων ήρθαν
-    </div>
-  </div>
 </div>

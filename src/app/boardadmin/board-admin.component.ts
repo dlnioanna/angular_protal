@@ -14,6 +14,8 @@ export class BoardAdminComponent implements OnInit {
   users: any[];
   userName: string;
   email: string;
+  usersFound: number;
+  message: string;
 
   constructor(private userService: UserService, private httpClient: HttpClient) {
   }
@@ -29,8 +31,13 @@ export class BoardAdminComponent implements OnInit {
       .subscribe(
         response => {
           this.users = response;
+          this.usersFound = this.users.length;
+          if (this.usersFound === 0) {
+            this.message = 'Δεν βρέθηκαν χρήστες με αυτά τα στοιχεία.';
+          }else {
+            this.message = null;
+          }
         });
-    console.log('users are ' + this.users.length);
   }
 
 }

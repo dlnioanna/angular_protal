@@ -2,6 +2,7 @@
   <div class="card card-container w-75 m-auto" *ngIf="!socialUser">
     <div class="card-header text-sm-center custom-blue font-weight-bold">Στοιχεία χρήστη</div>
     <img *ngIf="user.image" class="card-img-top img-responsive photo" [src]="'data:image/jpeg;base64,'+user.image">
+<!--    <img *ngIf="!user.image" class="card-img-top img-responsive photo" src="assets/images/user.png">-->
     <form enctype="multipart/form-data"
           name="form" (ngSubmit)="f.form.valid && onEdit()" #f="ngForm" novalidate>
       <!-- role -->
@@ -92,7 +93,7 @@
       </div>
     </form>
     <div class="alert alert-danger" *ngIf="isSignUpFailed">
-      Η επεξεργασία των στοιχείων σας απέτυχε! <br>{{errorMessage}}
+      Η επεξεργασία των στοιχείων σας απέτυχε!
     </div>
     <div class="alert alert-success" *ngIf="isSuccessful"> Η επεξεργασία των στοιχείων σας ήταν επιτυχής!</div>
   </div>
