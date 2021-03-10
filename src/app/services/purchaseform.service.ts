@@ -27,11 +27,6 @@ export class PurchaseformService {
     return this.http.get<MovieShow>(baseUrl + 'movieshows/' + movieShowId);
   }
 
-  // makePurchase(movieId: number, movieShowId: number, numberOfTickets: number, listOfGuests: Guest[]): void {
-  //   this.http.post(baseUrl + 'purchase', movieId, movieShowId, numberOfTickets);
-  // }
-
-
   buyTickets(ticketsData): Observable<any> {
     return this.http.post(baseUrl + 'purchase_tickets', ticketsData, httpOptions);
   }

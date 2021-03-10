@@ -1,1 +1,26 @@
-<p>attendants works!</p>
+<div class="container-fluid mx-auto pt-5 pb-5">
+  <div class="row col-sm-12 justify-content-center">
+    <div class="col-sm-4 text-center custom-blue">
+      Όνομα
+    </div>
+    <div class="col-sm-4 text-center custom-blue">
+      Email
+    </div>
+    <div class="col-sm-4 text-center custom-blue">
+      Αριθμός εισιτηρίου
+    </div>
+  </div>
+  <div *ngFor="let guest of guests">
+    <div class="row col-sm-12">
+      <div class="col-sm-4 text-center">
+        {{guest.name}}
+      </div>
+      <div class="col-sm-4 text-center">
+        {{guest.email}}
+      </div>
+      <div class="col-sm-4 text-center">
+        {{guest.ticketId}}
+      </div>
+    </div>
+  </div>
+</div>
