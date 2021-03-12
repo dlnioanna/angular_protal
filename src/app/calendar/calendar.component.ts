@@ -9,20 +9,6 @@ import {map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3',
-  },
-  blue: {
-    primary: '#1eff22',
-    secondary: '#D1E8FF',
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA',
-  },
-};
 
 @Component({
   selector: 'app-calendar',
@@ -81,14 +67,19 @@ export class CalendarComponent implements OnInit {
   convertEvent(calEvent: CalendarEvent): CalendarEvent {
     let newEvent: CalendarEvent;
     newEvent = {
-      start: new Date(calEvent.start),
-      end: new Date(calEvent.end),
+      start: this.getUtcDate(new Date(calEvent.start)),
+      end: this.getUtcDate(new Date(calEvent.end)),
       title: calEvent.title,
       id: calEvent.id,
       color: calEvent.color
-  }
-    ;
+    };
     return newEvent;
+  }
+
+  getUtcDate(d: Date): any {
+    const returnDate = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(),
+      d.getUTCHours(), d.getUTCMinutes());
+    return returnDate;
   }
 
   setView(view: CalendarView): void {

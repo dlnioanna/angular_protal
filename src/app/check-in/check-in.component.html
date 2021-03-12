@@ -1,6 +1,7 @@
 <div class="container-fluid mx-auto pt-5 pb-5">
   <div class="card card-container w-50 m-auto">
     <div class="card-header text-sm-center custom-blue font-weight-bold">Εισάγετε τον αριθμό εισιτηρίου</div>
+    <div class="card-body">
     <form name="form" (ngSubmit)="checkIn()" #f="ngForm" novalidate>
       <!-- number of ticket-->
       <div class="form-group row col-12 p-3 justify-content-around w-75 m-auto">
@@ -17,12 +18,14 @@
       <div class="form-group text-center m-3">
         <button class="btn btn-primary btn-sm m-auto text-capitalize">Καταχώριση</button>
       </div>
-    </form>
-    <div class="alert-success">
+      <div class="alert-success text-justify">
       <div *ngIf="successMessage">{{successMessage}}</div>
     </div>
-    <div class="alert-danger">
-      <div *ngIf="errorMessage">{{errorMessage}}</div>
+      <div class="alert-danger text-justify">
+        <div *ngIf="errorMessage">{{errorMessage}}</div>
+      </div>
+    </form>
+
     </div>
   </div>
 </div>

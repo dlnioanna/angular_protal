@@ -24,12 +24,13 @@ export class CheckInComponent implements OnInit {
   checkIn(): void {
     this.ticketService.checkIn(this.form.ticketNumber).subscribe(
       data => {
-        this.successMessage = data.json();
+        this.errorMessage = null;
+        this.successMessage = data;
       },
       err => {
+        this.successMessage = null;
         this.errorMessage = err.error;
-      }  );
-    console.log(' success is ' + this.successMessage + ' error is ' + this.errorMessage);
+      });
   }
 
 }

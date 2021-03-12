@@ -19,12 +19,7 @@ export class TicketService {
   }
 
   checkIn(ticketNumber: number): Observable<any> {
-    return this.http.post(baseUrl + 'ticketCheck/' + ticketNumber, httpOptions).pipe(
-      map(
-      (response: Response) => {
-        console.log(response.json());
-        return response.json();
-      }));
+    return this.http.post(baseUrl + 'ticketCheck/' + ticketNumber, httpOptions);
   }
 
 }

@@ -19,8 +19,8 @@
         <div class="row col-sm-12 m-auto">
           <div class="col-sm-9 text-center m-auto">
             <div class="card-title custom-header-blue"> Προβολή {{movieShow.showDate| date:'dd/MM/yyyy'}}
-              Ώρα έναρξης : {{movieShow.startTime| date:'hh:mm'}}
-              Ώρα λήξης : {{movieShow.endTime| date:'hh:mm'}}
+              Ώρα έναρξης : {{movieShow.startTime| date:'HH:mm':'UTC'}}
+              Ώρα λήξης : {{movieShow.endTime| date:'HH:mm':'UTC'}}
             </div>
             <div class="card-text">
               {{movieShow.roomOfMovieShow.name}} - {{movieShow.roomOfMovieShow.floor==0 ? 'ισόγειο ': movieShow.roomOfMovieShow.floor+'ος όροφος'}}

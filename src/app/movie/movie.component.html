@@ -22,8 +22,8 @@
                                 <div class="list-group-item card-text" style="background-color:#010626">
                                   <span class="font-weight-bold">ΠΡΟΒΟΛΕΣ :</span><br>
                                   <li class="card-text" *ngFor="let movieShow of movies[i].movieShowsOfMovie">
-                                    {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
-                                    {{movieShow.startTime | date:'hh:mm'}}
+                                    {{movieShow.showDate | date:'dd/MM/yyyy':'UTC'}} <span> ώρα </span>
+                                    {{movieShow.startTime | date:'HH:mm':'UTC'}}
                                     <br>
                                     <span>Αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
                                     -
@@ -60,8 +60,8 @@
                     <div class="list-group-item card-text" style="background-color:#010626">
                       <span class="font-weight-bold">ΠΡΟΒΟΛΕΣ :</span><br>
                       <li class="card-text" *ngFor="let movieShow of movies[i+1].movieShowsOfMovie">
-                        {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
-                        {{movieShow.startTime | date:'hh:mm'}}
+                        {{movieShow.showDate | date:'dd/MM/yyyy':'UTC'}} <span> ώρα </span>
+                        {{movieShow.startTime | date:'HH:mm':'UTC'}}
                         <br>
                         <span>Αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
                         -
@@ -97,8 +97,8 @@
                     <div class="list-group-item card-text" style="background-color:#010626">
                       <span class="font-weight-bold">ΠΡΟΒΟΛΕΣ :</span><br>
                       <li class="card-text" *ngFor="let movieShow of movies[i+2].movieShowsOfMovie">
-                        {{movieShow.showDate | date:'dd/MM/yyyy'}} <span> ώρα </span>
-                        {{movieShow.startTime | date:'hh:mm'}}
+                        {{movieShow.showDate | date:'dd/MM/yyyy':'UTC'}} <span> ώρα </span>
+                        {{movieShow.startTime | date:'HH:mm':'UTC'}}
                         <br>
                         <span>Αίθουσα : {{movieShow.roomOfMovieShow.id}}</span>
                         -
