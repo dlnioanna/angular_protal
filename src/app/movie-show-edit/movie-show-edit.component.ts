@@ -7,6 +7,7 @@ import {MovieShow} from '../models/movieShow';
 import {HttpClient} from '@angular/common/http';
 import {RoomService} from '../services/room.service';
 import {Room} from '../models/room';
+import {Time} from '@angular/common';
 
 @Component({
   selector: 'app-movie-show-edit',
@@ -26,6 +27,8 @@ export class MovieShowEditComponent implements OnInit {
   updateFailed = false;
   errorMessage = '';
   dt: any;
+  selectedDate: any;
+  selectedTime: any;
 
   constructor(private activatedRoute: ActivatedRoute, private movieService: MovieService,
               private movieShowService: MovieShowService, private httpClient: HttpClient,
@@ -44,6 +47,7 @@ export class MovieShowEditComponent implements OnInit {
       movieShows => this.movieShow = movieShows);
     this.roomService.getRooms().subscribe(
       rooms => this.showRoom = rooms);
+    this.selectedDate = new Date(this.movieShow.showDate);
   }
 
   onEdit(): void {
@@ -62,12 +66,12 @@ export class MovieShowEditComponent implements OnInit {
     uploadMovieData.append('capacity', this.movieShow.roomOfMovieShow.capacity.toString());
     uploadMovieData.append('date', this.movieShow.showDate.toString());
     uploadMovieData.append('time', this.movieShow.startTime.toString());
-    console.log(uploadMovieData);
     this.httpClient.post('http://localhost:8080/api/v1/movies/save', uploadMovieData, {observe: 'response'})
       .subscribe(
         response => {
           this.isSuccessful = true;
           this.updateFailed = false;
+          window.location.reload();
         },
         err => {
           this.errorMessage = err.errorMessage;

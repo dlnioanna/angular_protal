@@ -59,6 +59,7 @@ export class AccountComponent implements OnInit {
         response => {
           this.isSuccessful = true;
           this.isSignUpFailed = false;
+          window.location.reload();
         },
         err => {
           this.errorMessage = err.error;
