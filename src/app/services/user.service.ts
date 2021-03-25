@@ -40,7 +40,6 @@ export class UserService {
   }
 
   getUserByUsernameOrEmail(user): Observable<any[]> {
-    console.log('username ' + user.username + ' email ' + user.email);
     return this.http.get<User[]>(baseUrl + 'getUser/' + user.username + '/' + user.email);
   }
 

@@ -8,10 +8,10 @@
         <div class="col-sm-4 text-sm-right custom-blue">
           <label for="role">Role</label></div>
         <div class="col-sm-8">
-          <select class="form-control" name="roleSelect" id="role" [value]="user.role">
-            <option value="USER">user</option>
-            <option value="ADMIN">admin</option>
-            <option value="ADMIN_CS">admin_cs</option>
+          <select class="form-control" name="roleSelect" id="role" [(ngModel)]="user.role">
+            <option value="ROLE_USER">user</option>
+            <option value="ROLE_ADMIN">admin</option>
+            <option value="ROLE_ADMIN_CS">admin_cs</option>
           </select>
         </div>
       </div>
