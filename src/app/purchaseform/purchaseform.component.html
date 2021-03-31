@@ -2,8 +2,8 @@
   <div class="card mx-auto my-3" style="width: 90%;">
     <h4 class="card-header text-center text-primary">Κράτηση Εισιτηρίων</h4>
     <div class="card-body justify-content-center small">
-      <h6 class="text-wrap text-center mb-4 custom-blue">{{movie.title}} - {{movieShow.showDate | date: 'dd/MM/yyyy'}} :
-        {{movieShow.startTime | date:'hh:mm'}}</h6>
+      <h6 class="text-wrap text-center mb-4 custom-blue">{{movie.title}} - {{movieShow.showDate | date: 'dd/MM/yyyy'}}
+        {{movieShow.startTime | date:'HH:mm':'UTC'}}</h6>
 
       <form name="purchaseForm" (ngSubmit)="f.form.valid && buyTickets()" #f="ngForm" novalidate>
         <div class="form-group row col-12 p-3 justify-content-center">

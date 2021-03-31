@@ -97,7 +97,6 @@ export class PurchaseformComponent implements OnInit {
         .subscribe(response => {
             this.isSuccessful = true;
             this.showTicketsError = false;
-            this.errorMessage = response;
           },
           err => {
             this.showTicketsError = true;

@@ -67,8 +67,8 @@ export class CalendarComponent implements OnInit {
   convertEvent(calEvent: CalendarEvent): CalendarEvent {
     let newEvent: CalendarEvent;
     newEvent = {
-      start: this.getUtcDate(new Date(calEvent.start)),
-      end: this.getUtcDate(new Date(calEvent.end)),
+      start: new Date(calEvent.start),
+      end: new Date(calEvent.end),
       title: calEvent.title,
       id: calEvent.id,
       color: calEvent.color
