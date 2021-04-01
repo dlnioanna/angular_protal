@@ -71,7 +71,6 @@ export class MovieShowEditComponent implements OnInit {
         response => {
           this.isSuccessful = true;
           this.updateFailed = false;
-          window.location.reload();
         },
         err => {
           this.errorMessage = err.errorMessage;
